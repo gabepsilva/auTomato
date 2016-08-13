@@ -1,0 +1,51 @@
+<div class="container">
+
+  <p id="notice"><%= notice %></p>
+
+
+  <h2> <%= @change.name %> </h2>
+  <p>
+    <h5><%= @change.description %></h5>
+  </p>
+
+
+  <p>
+  <h4>
+    <%= link_to " + Add Step", new_step_path(@change.id) %>
+  </h4>
+  </p>
+
+  <table class="table table-hover table-responsive">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Action</th>
+      <th>Status</th>
+      <th>Log</th>
+      <th>Assigned to</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @steps.each do |step| %>
+        <tr>
+          <td><strong><%= step.stepNo %></strong></td>
+          <td><%= link_to step.action, edit_step_path(step), remote: true %></td>
+          <td> <a href="#" class="label label-primary"> <%= step.status %> </a></td>
+          <td><%= step.log %></td>
+          <td><%= link_to step.assignedTo.name, step.assignedTo %></td>
+          <td><%= link_to 'Show', step %></td>
+          <td><%= link_to 'Destroy', step, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
+  <%= link_to 'Edit', edit_change_path(@change) %> |
+  <%= link_to 'Back', changes_path %>
+</div>
+
+<div class="js-edit-modal"></div>
+

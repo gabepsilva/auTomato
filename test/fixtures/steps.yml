@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stepNo: 1
+  action: MyString
+  status: MyString
+  log: MyString
+  beongs_to: 
+
+two:
+  stepNo: 1
+  action: MyString
+  status: MyString
+  log: MyString
+  beongs_to: 

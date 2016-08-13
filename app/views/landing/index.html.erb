@@ -1,0 +1,85 @@
+<div class="container">
+
+  <h1>AuTomato Dashboard</h1>
+  <hr>
+  <br>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Projects</h3>
+        </div>
+        <div class="panel-body">
+
+          <h4> <%= link_to '+ New Project', new_project_path %> </h4>
+
+          <table class="table table-hover table-responsive">
+            <thead>
+            <tr>
+              <th>Project name</th>
+              <th>Description</th>
+              <th>Members</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @projects.each do |project| %>
+                <tr>
+                  <td><%= link_to project.name, project %> </td>
+                  <td><%= project.description %></td>
+                  <td>
+                    <% project.members.each do |mb| %>
+                        <%= link_to mb.name, mb %>
+                    <% end %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Changes</h3>
+        </div>
+        <div class="panel-body">
+
+          <h4> <%= link_to '+ New Change', new_change_path %> </h4>
+
+          <table class="table table-hover table-responsive">
+            <thead>
+            <tr>
+              <th>Change name</th>
+              <th>Owner</th>
+              <th>Project</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @changes.each do |change| %>
+                <tr>
+                  <td><%= link_to change.name, change %> </td>
+                  <td><%= link_to change.owner.name, change.owner unless change.owner.nil? %> </td>
+                  <td><%= link_to change.project.name, change.project %> </td>
+                </tr>
+            <% end %>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+

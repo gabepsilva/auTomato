@@ -1,0 +1,39 @@
+<div class="container">
+
+
+  <p id="notice"><%= notice %></p>
+
+  <h1>Changes</h1>
+
+
+  <table class="table table-hover table-responsive">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Coordinator</th>
+      <th>Owner</th>
+      <th>Actions</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @changes.each do |change| %>
+        <tr>
+          <td><%= change.name %></td>
+          <td><%= change.description %></td>
+          <td><%= change.coordinator.name %></td>
+          <td><%= change.owner.name %></td>
+          <td><%= link_to 'Show', change %></td>
+          <td><%= link_to 'Edit', edit_change_path(change) %></td>
+          <td><%= link_to 'Destroy', change, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Change', new_change_path %>
+</div>

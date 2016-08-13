@@ -1,0 +1,8 @@
+<h1>New Step</h1>
+
+<h3><%= @change.name %></h3>
+<h5><%= @change.description %></h5>
+
+<%= render 'form', step: @step %>
+
+<%= link_to 'Back', steps_path %>
