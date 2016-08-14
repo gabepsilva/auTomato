@@ -66,31 +66,12 @@ class StepsController < ApplicationController
   def update
     respond_to do |format|
 
-      puts "*****************"
-
-      @step.update(step_nested_params)
-
-      puts s.inspect
-      puts "*****************----------"
-
-      s.assignedTo = params[:assignedTo]
-
-      puts s.inspect
-
-
-
-
-      step_nested_params
-
-
-      change = @step.change
-
 
       if @step.update(step_params)
-        format.html { redirect_to change, notice: 'Step was successfully updated.' }
+        format.html { redirect_to @step.change, notice: 'Step was successfully updated.' }
         format.json { render :show, status: :ok, location: @step }
       else
-        format.html { redirect_to change, notice: @step.errors }
+        format.html { redirect_to  @step.change, notice: @step.errors }
         format.json { render json: @step.errors, status: :unprocessable_entity }
       end
     end
@@ -140,17 +121,7 @@ class StepsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
     def step_params
-      puts "#_#_#_#_#_"
-      params.require(:step).permit(:stepNo, :action, :status, :log, :change_id, assignedTo: [:id] )
-    end
-
-  # Allow nested params
-  def step_nested_params
-
-    puts "*-*-*-*-*-*-*"
-
-    params.permit({:step => [:stepNo, :action, :status, :log, :change_id]},
-                  {:assignedTo => [:id]})
+      params.require(:step).permit(:stepNo, :action, :status, :log, :change_id)
     end
 
 end

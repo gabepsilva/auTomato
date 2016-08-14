@@ -1,47 +1,43 @@
-<%= form_for(step) do |f| %>
-  <% if step.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(step.errors.count, "error") %> prohibited this step from being saved:</h2>
+<!-- Modal -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
 
-      <ul>
-      <% step.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <%= bootstrap_form_for(@step) do |f| %>
+            <% if @step.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@step.errors.count, "error") %> prohibited this step from being saved:</h2>
+
+                  <ul>
+                    <% @step.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <%= f.hidden_field :change_id %>
+
+            <%= f.number_field :stepNo, label: 'Step #' %>
+
+            <%= f.text_field :action, label: 'Action' %>
+
+
+            <hr/>
+            <%= f.fields_for :assignedTo, @step.assignedTo do |c| %>
+                <%= c.number_field :id, label: 'Assigned to (ID):' %>
+            <% end %>
+            <hr/>
+
+            <%= f.text_field :status, label: 'Status' %>
+
+
+            <div class="modal-footer">
+              <%= f.submit class: 'btn btn-info' %>
+            </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-
-    <%= f.hidden_field :change_id %>
-
-  <div class="field">
-    <%= f.label 'Step #' %>
-    <%= f.number_field :stepNo %>
   </div>
-
-  <div class="field">
-    <%= f.label :action %>
-    <%= f.text_field :action %>
-  </div>
-
-  <div class="field">
-    <%= f.label 'Assigned to' %>
-    <%= f.fields_for :assignedTo, step.assignedTo do |c| %>
-        <%= c.number_field :id %>
-        <%	 end %>
-
-  </div>
-
-    <div class="field">
-      <%= f.label :status %>
-      <%= f.text_field :status %>
-    </div>
-
-  <div class="field">
-    <%= f.label :log %>
-    <%= f.text_field :log %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
