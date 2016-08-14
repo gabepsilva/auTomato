@@ -13,6 +13,16 @@ staff2 = Staff.new(:name => 'Dummy', :email => 'dummy@dummy.email', :contact => 
 project1 = Project.new(:name => 'Project 0', :description => 'First project created during development phase')
 project2 = Project.new(:name => 'Project Dummy', :description => 'Second project created during development phase')
 
+status1 = StepStatus.new(:name => 'TODO')
+status2 = StepStatus.new(:name => 'DONE')
+status3 = StepStatus.new(:name => 'FAILED')
+status4 = StepStatus.new(:name => 'SKIPPED')
+
+status1.save
+status2.save
+status3.save
+status4.save
+
 
 project1.members << staff1
 project1.members << staff2

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
 
+  resources :step_statuses
   get 'landing/new'
 
   get 'landing/create'
