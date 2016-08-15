@@ -1,6 +1,8 @@
 class StepsController < ApplicationController
   before_action :set_step, only: [:show, :edit, :update, :destroy]
   before_action :set_change, only: [:create] # new crash to create new step
+  before_action :process_assignedTo, only: [:update]
+
 
   # GET /steps
   # GET /steps.json
@@ -30,12 +32,10 @@ class StepsController < ApplicationController
   def edit
 
 
+    @step_statuses = StepStatus.all
+
     respond_to do |format|
-      puts '-------------------------------------------'
-      puts @step.inspect
-
       format.js
-
     end
 
   end
@@ -121,7 +121,12 @@ class StepsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
     def step_params
-      params.require(:step).permit(:stepNo, :action, :status, :log, :change_id)
+      #params.require(:step).permit(:stepNo, :action, :status, :log, :change_id)
+      params.require(:step).permit(:stepNo, :action, :status, :log, :change_id, assignedTo_attributes: [:id])
     end
+
+  def process_assignedTo
+    @step.assignedTo = Staff.find_by_id(params[:step][:assignedTo_attributes][:id].to_i) unless @step.assignedTo.id == params[:step][:assignedTo_attributes][:id].to_i
+  end
 
 end

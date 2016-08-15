@@ -24,13 +24,26 @@
             <%= f.text_field :action, label: 'Action' %>
 
 
-            <hr/>
-            <%= f.fields_for :assignedTo, @step.assignedTo do |c| %>
-                <%= c.number_field :id, label: 'Assigned to (ID):' %>
-            <% end %>
-            <hr/>
+            <fieldset class="form-group">
+              <hr/>
+              <%= f.fields_for :assignedTo_attributes, @step.assignedTo do |c| %>
+                  <%= c.number_field :id, label: 'Assigned to (ID):' %>
+              <% end %>
+              <hr/>
+            </fieldset>
 
-            <%= f.text_field :status, label: 'Status' %>
+
+            <label>Status:</label>
+            <% @step_statuses.each do |st| %>
+
+                <label style="display: inline-block; vertical-align:middle; background-color: <%= st.color %>" >
+                  <%= f.radio_button :status, st.name, label: st.name  %>
+                </label>
+
+            <% end %>
+
+
+
 
 
             <div class="modal-footer">

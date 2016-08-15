@@ -32,7 +32,7 @@
         <tr>
           <td><strong><%= step.stepNo %></strong></td>
           <td><%= link_to step.action, edit_step_path(step), remote: true %></td>
-          <td> <a href="#" class="label label-primary"> <%= step.status %> </a></td>
+          <td> <a href="#" class="label" style="background-color: <%= @colors.find_by_name(step.status).color  %>"> <%= step.status %> </a></td>
           <td><%= step.log %></td>
           <td><%= link_to step.assignedTo.name, step.assignedTo %></td>
           <td><%= link_to 'Show', step %></td>
