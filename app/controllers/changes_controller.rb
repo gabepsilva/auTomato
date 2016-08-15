@@ -13,12 +13,6 @@ class ChangesController < ApplicationController
     @steps = @change.steps.reorder('stepNo ASC')
     @colors = StepStatus.all
 
-    puts 'ttttttttttttttttttttttttt'
-    h = @colors.as_json
-    puts h.inspect
-
-
-
   end
 
   # GET /changes/new
