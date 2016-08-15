@@ -25,6 +25,8 @@ class StepsController < ApplicationController
 
     @step.assignedTo = Staff.first
 
+    @step_statuses = StepStatus.all
+
 
   end
 
