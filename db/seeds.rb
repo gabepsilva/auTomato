@@ -68,3 +68,14 @@ change3.steps << Step.new(stepNo: 6, action: 'cp tarball a6 to place c22', statu
 change1.steps << Step.new(stepNo: 8, action: 'smv zipfile a7 to server d11', status: 'TODO', assignedTo: Staff.find(1))
 
 
+log1 = Log.new(log: '/tmp/log1')
+log2 = Log.new(log: '/tmp/log2')
+log3 = Log.new(log: '/tmp/log3')
+
+log1.save
+log2.save
+log3.save
+
+
+
+

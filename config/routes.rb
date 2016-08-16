@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
 
+  resources :logs
   resources :step_statuses
   get 'landing/new'
 

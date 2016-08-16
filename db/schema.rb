@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160814053342) do
+ActiveRecord::Schema.define(version: 20160816014810) do
 
   create_table "changes", force: :cascade do |t|
     t.text     "name"
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(version: 20160814053342) do
     t.integer  "owner_id"
     t.integer  "coordinator_id"
     t.integer  "project_id"
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.string   "log"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "project_members", force: :cascade do |t|
