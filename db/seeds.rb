@@ -43,7 +43,7 @@ project1.changeRequests << change2
 
 project2.changeRequests << change3
 
-change1.steps << Step.new(stepNo: 1,  action: 'cp file a0 to server x77', status: 'DONE', assignedTo: Staff.find(1))
+change1.steps << Step.new(stepNo: 1, action: 'cp file a0 to server x77', status: 'DONE', assignedTo: Staff.find(1))
 change2.steps << Step.new(stepNo: 1, action: 'mv tarball a1 to location y66', status: 'TODO', assignedTo: Staff.find(1))
 change3.steps << Step.new(stepNo: 1, action: 'scp zipfile a2 to box z55', status: 'DONE', assignedTo: Staff.find(2))
 change2.steps << Step.new(stepNo: 2, action: 'mv tarball a3 to server a44', status: 'DONE', assignedTo: Staff.find(2))
@@ -68,14 +68,21 @@ change3.steps << Step.new(stepNo: 6, action: 'cp tarball a6 to place c22', statu
 change1.steps << Step.new(stepNo: 8, action: 'smv zipfile a7 to server d11', status: 'TODO', assignedTo: Staff.find(1))
 
 
-log1 = Log.new(log: '/tmp/log1')
-log2 = Log.new(log: '/tmp/log2')
-log3 = Log.new(log: '/tmp/log3')
+change1.save
+change2.save
+change3.save
+
+log1 = Log.new(log_path: '/tmp/log1', step: change1.steps.first)
+log2 = Log.new(log_path: '/tmp/log2', step: change1.steps.first)
+log3 = Log.new(log_path: '/tmp/log3', step: change1.steps.second)
+log4 = Log.new(log_path: '/tmp/log4', step: change1.steps.third)
+log5 = Log.new(log_path: '/tmp/log5', step: change2.steps.second)
+log6 = Log.new(log_path: '/tmp/log6', step: change2.steps.second)
+
 
 log1.save
 log2.save
 log3.save
-
-
-
-
+log4.save
+log5.save
+log6.save

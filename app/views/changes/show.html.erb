@@ -32,7 +32,7 @@
           <td><strong><%= link_to step.stepNo, edit_step_path(step), remote: true %></strong></td>
           <td><%= link_to step.action, edit_step_path(step), remote: true %></td>
           <td><%= link_to step.status, edit_step_path(step), remote: true, class: 'label', style: "background-color: #{@colors.find_by_name(step.status).color}" %> </td>
-          <td><%= link_to '<span class="glyphicon glyphicon-folder-open"></span>'.html_safe, step %></td>
+          <td><%= link_to "<span class='badge alert-info'>#{step.logs.count}</span>".html_safe, step %></td>
           <td><%= link_to step.assignedTo.name, step.assignedTo %></td>
         </tr>
     <% end %>

@@ -24,9 +24,8 @@ ActiveRecord::Schema.define(version: 20160816014810) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.string   "log"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string  "log_path"
+    t.integer "step_id"
   end
 
   create_table "project_members", force: :cascade do |t|
@@ -54,7 +53,6 @@ ActiveRecord::Schema.define(version: 20160816014810) do
     t.integer  "stepNo"
     t.string   "action"
     t.string   "status"
-    t.string   "log"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "change_id"
