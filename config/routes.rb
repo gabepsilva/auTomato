@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   root to: 'landing#index'
 
   get 'steps/new/:change_id', to: 'steps#new', as: 'new_step'
+
+  post 'steps/:id/log', to: 'steps#upload', as: 'steps_log_upload'
 #  get 'steps/edit/:id', to: 'steps#edit', as: 'edit_step'
 #  get 'steps/', to: 'steps#new', as: 'steps'
 #  get 'steps/:id', to: 'steps#show', as: 'show_step'

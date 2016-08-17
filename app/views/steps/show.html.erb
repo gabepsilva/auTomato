@@ -1,25 +1,54 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Stepno:</strong>
-  <%= @step.stepNo %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Action:</strong>
-  <%= @step.action %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @step.status %>
-</p>
-
-<p>
-  <strong>Log:</strong>
-  <%= @step.log %>
-</p>
+  <h1> <%= @step.change.project.name %> </h1>
+  <h3> &emsp; <%= @step.change.name %></h3>
+  <hr/>
 
 
-<%= link_to 'Edit', edit_step_path(@step) %> |
-<%= link_to 'Back', @change %>
+  <h5>
+    <strong> Step #: </strong>
+    <%= @step.stepNo %>
+    <br/><br/>
+
+    <strong>Action:</strong>
+    <%= @step.action %>
+    <br/><br/>
+
+    <strong>Status:</strong>
+    <%= label '', @step.status, class: 'label j-hide-toggle', style: "background-color: #{StepStatus.find_by_name(@step.status).color}; font-size: 12px" %>
+    <br/><br/>
+  </h5>
+
+  <h4><a href="#" id="add-log"> + Add Log </a></h4>
+
+
+  <%= form_for :upload, {:url => steps_log_upload_path, :html => {:multipart => true}} do |f| %>
+
+      <div id="j--hide" class="panel panel-primary">
+        <div class="panel-heading">
+          + New Log <%= submit_tag("Submit form", class: "btn btn-info") %>
+        </div>
+
+
+        <div class="panel-body">
+
+          upload a file
+
+          <%= file_field_tag('file', class: "btn btn-info") %>
+          <br/><br/>
+          OR paste some text
+          <textarea rows="15" style="width: 100%;"></textarea>
+
+
+        </div>
+        <div class="panel-footer">
+          <%= submit_tag("Submit form", class: "btn btn-info") %>
+        </div>
+      </div>
+  <% end %>
+
+
+</div>
+
