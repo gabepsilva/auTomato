@@ -1,5 +1,5 @@
 class StepsController < ApplicationController
-  before_action :set_step, only: [:show, :edit, :update, :destroy]
+  before_action :set_step, only: [:show, :edit, :update, :destroy, :upload]
   before_action :set_change, only: [:create] # new crash to create new step
   before_action :process_assignedTo, only: [:update]
 
@@ -14,12 +14,35 @@ class StepsController < ApplicationController
   # GET /steps/1.json
   def show
 
-    @log = Log.create
-    @log.step = @step
+   # @log = Log.new
+   # @log.step = @step
 
   end
 
   def upload
+
+    root_folder = 'storage/'
+    final_file_name = Time.now.strftime("%Y/%m/")
+
+    FileUtils::mkdir_p (root_folder + final_file_name)
+
+
+    log = Log.create(step: @step)
+
+
+    #destination file name based on log id
+    final_file_name << log.id.to_s + '_' + params[:file].original_filename
+    log.log_path = root_folder + final_file_name
+
+
+    path = File.join(root_folder, final_file_name)
+    File.open(path, "wb") { |f| f.write(params[:file].read) }
+    flash[:notice] = 'Log was successfully created'
+
+    @step.logs << log
+
+    render :show
+
 
   end
 
