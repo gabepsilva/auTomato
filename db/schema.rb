@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20160816014810) do
 
   create_table "logs", force: :cascade do |t|
     t.string  "log_path"
+    t.string  "file_name"
+    t.string  "mime_type"
     t.integer "step_id"
   end
 

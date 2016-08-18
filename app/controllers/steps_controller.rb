@@ -21,28 +21,43 @@ class StepsController < ApplicationController
 
   def upload
 
-    root_folder = 'storage/'
-    final_file_name = Time.now.strftime("%Y/%m/")
+    # general folder to store files
+    storage_folder = 'storage/'
+    # organization folders
+    storage_hier = Time.now.strftime("%Y/%m/")
 
-    FileUtils::mkdir_p (root_folder + final_file_name)
+    FileUtils::mkdir_p (storage_folder + storage_hier)
 
-
+    # create now to get its ID
     log = Log.create(step: @step)
 
+    # final file name based on log id
+    final_file_name = log.id.to_s + '_' + params[:upload][:file].original_filename
+    log.log_path = storage_folder + storage_hier
+    log.file_name = final_file_name
 
-    #destination file name based on log id
-    final_file_name << log.id.to_s + '_' + params[:file].original_filename
-    log.log_path = root_folder + final_file_name
 
+    final_file_name = storage_folder + storage_hier + final_file_name
+    FileUtils.mv(params[:upload][:file].tempfile.path, final_file_name )
 
-    path = File.join(root_folder, final_file_name)
-    File.open(path, "wb") { |f| f.write(params[:file].read) }
-    flash[:notice] = 'Log was successfully created'
-
+    require 'rack/mime'
+    log.mime_type = MIME::Types.type_for(final_file_name).first.content_type
     @step.logs << log
 
     render :show
 
+
+  end
+
+  def download
+
+    log = Log.find(params[:log])
+    puts log.inspect
+
+    send_file(
+        log.log_path + log.file_name,
+        filename: log.file_name
+    )
 
   end
 
