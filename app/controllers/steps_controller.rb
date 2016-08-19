@@ -14,8 +14,8 @@ class StepsController < ApplicationController
   # GET /steps/1.json
   def show
 
-   # @log = Log.new
-   # @log.step = @step
+    # @log = Log.new
+    # @log.step = @step
 
   end
 
@@ -28,21 +28,41 @@ class StepsController < ApplicationController
 
     FileUtils::mkdir_p (storage_folder + storage_hier)
 
-    # create now to get its ID
-    log = Log.create(step: @step)
+    if !params[:upload][:file].nil?
 
-    # final file name based on log id
-    final_file_name = log.id.to_s + '_' + params[:upload][:file].original_filename
-    log.log_path = storage_folder + storage_hier
-    log.file_name = final_file_name
+      log = Log.new(step: @step)
+
+      final_file_name = Log.last.id.to_s + '_' + params[:upload][:file].original_filename
+      log.log_path = storage_folder + storage_hier
 
 
-    final_file_name = storage_folder + storage_hier + final_file_name
-    FileUtils.mv(params[:upload][:file].tempfile.path, final_file_name )
+      final_file_name = storage_folder + storage_hier + final_file_name
+      FileUtils.mv(params[:upload][:file].tempfile.path, final_file_name)
 
-    require 'rack/mime'
-    log.mime_type = MIME::Types.type_for(final_file_name).first.content_type
-    @step.logs << log
+      require 'rack/mime'
+      log.mime_type = MIME::Types.type_for(final_file_name).first.content_type
+      @step.logs << log
+    end
+
+    if !params[:upload][:text_field_log].empty?
+
+      log = Log.new(step: @step)
+
+      file = Tempfile.new('text_field_log')
+      file.write(params[:upload][:text_field_log])
+      file.close
+
+      log.log_path  = storage_folder + storage_hier
+      final_file_name = log.log_path + Log.last.id.to_s + '_text_field_log.txt'
+
+      log.file_name = final_file_name
+      FileUtils.mv(file.path, final_file_name)
+
+     # require 'rack/mime'
+      log.mime_type = MIME::Types.type_for(final_file_name).first.content_type
+
+      @step.logs << log
+    end
 
     render :show
 
@@ -119,7 +139,7 @@ class StepsController < ApplicationController
         format.html { redirect_to @step.change, notice: 'Step was successfully updated.' }
         format.json { render :show, status: :ok, location: @step }
       else
-        format.html { redirect_to  @step.change, notice: @step.errors }
+        format.html { redirect_to @step.change, notice: @step.errors }
         format.json { render json: @step.errors, status: :unprocessable_entity }
       end
     end
@@ -139,10 +159,10 @@ class StepsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_step
-      @step = Step.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_step
+    @step = Step.find(params[:id])
+  end
 
   def set_change
     @step = Step.new(step_params)
@@ -168,10 +188,10 @@ class StepsController < ApplicationController
 
 
   # Never trust parameters from the scary internet, only allow the white list through.
-    def step_params
-      #params.require(:step).permit(:stepNo, :action, :status, :log, :change_id)
-      params.require(:step).permit(:stepNo, :action, :status, :log, :change_id, assignedTo_attributes: [:id])
-    end
+  def step_params
+    #params.require(:step).permit(:stepNo, :action, :status, :log, :change_id)
+    params.require(:step).permit(:stepNo, :action, :status, :log, :change_id, assignedTo_attributes: [:id])
+  end
 
   def process_assignedTo
     @step.assignedTo = Staff.find_by_id(params[:step][:assignedTo_attributes][:id].to_i) unless @step.assignedTo.id == params[:step][:assignedTo_attributes][:id].to_i
