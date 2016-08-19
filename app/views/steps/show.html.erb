@@ -46,31 +46,38 @@
 
   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
-  <% counter = 0 %>
-  <% @step.logs.each do |log| %>
+    <% counter = 0 %>
+    <% @step.logs.each do |log| %>
 
-    <div class="panel panel-info">
-      <div class="panel-heading" role="tab" id="<%= "h_#{log.id}" %>">
-        <h4 class="panel-title">
-          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="<%= "#c_#{log.id}" %>" aria-expanded="false" aria-controls=<%= "c_#{log.id}" %>>
-            <%= "Log# #{counter = counter +1}" %>
-          </a>
-        </h4>
-      </div>
-      <div id="<%= "c_#{log.id}" %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="<%= "h_#{log.id}" %>">
-        <div class="panel-body">
+        <div class="panel panel-info">
+          <div class="panel-heading" role="tab" id="<%= "h_#{log.id}" %>">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="<%= "#c_#{log.id}" %>" aria-expanded="false" aria-controls=<%= "c_#{log.id}" %>>
+                <%= "Log# #{counter = counter +1}" %>
+              </a>
+            </h4>
+          </div>
+          <div id="<%= "c_#{log.id}" %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="<%= "h_#{log.id}" %>">
+            <div class="panel-body">
+
+              <%= link_to("Downaload #{log.file_name}", steps_download_url(:log => log)) %>
+              <% if log.mime_type = 'text/plain' %>
+
+                  <pre>
+
+                    <%= render :file => log.log_path + log.file_name %>
 
 
-          <%= link_to("Downaload #{log.file_name}", steps_download_url(:log => log))  %>
+                  </pre>
+
+              <% end %>
 
 
-
-
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-  <% end %>
+    <% end %>
 
 
   </div>

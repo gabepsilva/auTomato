@@ -53,10 +53,10 @@ class StepsController < ApplicationController
       file.close
 
       log.log_path  = storage_folder + storage_hier
-      final_file_name = log.log_path + Log.last.id.to_s + '_text_field_log.txt'
+      final_file_name = Log.last.id.to_s + '_text_field_log.txt'
 
       log.file_name = final_file_name
-      FileUtils.mv(file.path, final_file_name)
+      FileUtils.mv(file.path, log.log_path + final_file_name)
 
      # require 'rack/mime'
       log.mime_type = MIME::Types.type_for(final_file_name).first.content_type
