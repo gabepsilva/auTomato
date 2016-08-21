@@ -62,23 +62,21 @@
 
               <%= link_to("Downaload #{log.file_name}", steps_download_url(:log => log)) %>
               <% if log.mime_type = 'text/plain' %>
-
                   <pre>
-
                     <%= render :file => log.log_path + log.file_name %>
-
-
                   </pre>
-
               <% end %>
-
-
             </div>
           </div>
         </div>
 
     <% end %>
 
+    <% if counter == 0 %>
+        <hr/>
+        <h3>No log for this step</h3>
+
+    <% end %>
 
   </div>
 </div>
