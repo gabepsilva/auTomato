@@ -1,7 +1,27 @@
+<div class="show-action-header" %>
+  <div class="container">
+
+    <h2> AuTomato Dashboard </h2>
+    <h5> &emsp; Running on <%= Rails.env %> mode. Version 1.2.1 </h5>
+
+    <hr/>
+    <%= link_to '<i class="glyphicon glyphicon-plus">  </i> More info'.html_safe, '#', style: 'color: white'; %>
+    |
+    <%= link_to '<i class="glyphicon glyphicon-edit">  </i> Edit change'.html_safe, '#', style: 'color: white'; %>
+    |
+    <%= link_to '<i class="glyphicon glyphicon-th-large">  </i> Clone to'.html_safe, '#', style: 'color: white'; %>
+    |
+    <%= link_to '<i class="glyphicon glyphicon-folder-close">  </i> Close request'.html_safe, '#', style: 'color: white'; %>
+
+  </div>
+</div>
+
+<%= render 'layouts/messages' %>
+
+
 <div class="container">
 
-  <h1>AuTomato Dashboard</h1>
-  <hr>
+
   <br>
 
   <div class="row">

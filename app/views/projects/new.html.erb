@@ -1,3 +1,12 @@
+<% if @project.errors.any? %>
+    <div class="error_explanation">
+      <div class="container">
+        <%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved.
+      </div>
+    </div>
+<% end %>
+
+
 <div class="container">
 
   <div class="col-md-6">

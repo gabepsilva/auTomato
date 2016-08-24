@@ -1,0 +1,11 @@
+<% unless flash.notice.nil?  %>
+    <div class="notice">
+      <div class="container">
+        <% flash.each do |name, msg| %>
+            <%= msg %>
+            <br/>
+        <% end %>
+      </div>
+    </div>
+<% end %>
+

@@ -2,11 +2,9 @@
 //# All this logic will automatically be available in application.js.
 //# You can use CoffeeScript in this file: http://coffeescript.org/
 
-console.log('step view');
-
-$(function() {
+$(function () {
     $('div#j--hide').hide();
-    $('a#add-log').click(function(event){
+    $('a#add-log').click(function (event) {
         event.preventDefault();
         $('div#j--hide').toggle();
     });

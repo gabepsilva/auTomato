@@ -1,28 +1,32 @@
+
+<%= javascript_include_tag 'steps' %>
+
+<div class="show-action-header" %>
+  <div class="container overlay">
+
+    <h2> Step # <%= @step.stepNo %> of <%= @step.change.name.slice(0, 20) %></h2>
+    <h5> &emsp; <%= @step.action %> </h5>
+
+    <hr/>
+    <%= link_to '<i class="glyphicon glyphicon-plus">  </i> More info'.html_safe, edit_step_path(@step), style: 'color: white'; %>
+    |
+    <%= link_to '<i class="glyphicon glyphicon-edit">  </i> Edit change'.html_safe, edit_step_path(@step), style: 'color: white'; %>
+    |
+    <%= link_to '<i class="glyphicon glyphicon-th-large">  </i> Clone to'.html_safe, edit_step_path(@step), style: 'color: white'; %>
+    |
+    <%= link_to '<i class="glyphicon glyphicon-folder-close">  </i> Close request'.html_safe, edit_step_path(@step), style: 'color: white'; %>
+
+  </div>
+</div>
+
+<%= render 'layouts/messages' %>
+
 <div class="container">
 
-  <p id="notice"><%= notice %></p>
-
-  <h1> <%= @step.change.project.name %> </h1>
-  <h3> &emsp; <%= @step.change.name %></h3>
+  <br/>
+  <h4><a href="#" id="add-log"> + Create new Log </a></h4>
   <hr/>
 
-
-  <h5>
-    <strong> Step #: </strong>
-    <%= @step.stepNo %>
-    <br/><br/>
-
-    <strong>Action:</strong>
-    <%= @step.action %>
-    <br/><br/>
-
-    <strong>Status:</strong>
-    <%= label '', @step.status, class: 'label j-hide-toggle', style: "background-color: #{StepStatus.find_by_name(@step.status).color}; font-size: 12px" %>
-    <br/><br/>
-  </h5>
-
-  <h4><a href="#" id="add-log"> + Create new Log </a></h4>
-  <br/>
 
   <%= bootstrap_form_for :upload, {:url => steps_log_upload_path, :html => {:multipart => true}} do |f| %>
 
@@ -62,24 +66,26 @@
 
               <%= link_to("Downaload #{log.file_name}", steps_download_url(:log => log)) %>
               <% if log.mime_type = 'text/plain' %>
-
                   <pre>
-
                     <%= render :file => log.log_path + log.file_name %>
-
-
                   </pre>
-
               <% end %>
-
-
             </div>
           </div>
         </div>
 
     <% end %>
 
+    <% if counter == 0 %>
+        <hr/>
+        <h3>No log for this step</h3>
+
+    <% end %>
 
   </div>
 </div>
+
+
+
+
 

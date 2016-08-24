@@ -13,10 +13,10 @@ staff2 = Staff.new(:name => 'Dummy', :email => 'dummy@dummy.email', :contact => 
 project1 = Project.new(:name => 'Project 0', :description => 'First project created during development phase')
 project2 = Project.new(:name => 'Project Dummy', :description => 'Second project created during development phase')
 
-status1 = StepStatus.new(:name => 'TODO', :color => 'blue')
-status2 = StepStatus.new(:name => 'DONE', :color => 'green')
-status3 = StepStatus.new(:name => 'FAILED', :color => 'red')
-status4 = StepStatus.new(:name => 'SKIPPED', :color => 'gray')
+status1 = StepStatus.new(:name => 'TODO', :color => '#5bc0de')
+status2 = StepStatus.new(:name => 'DONE', :color => '#5cb85c')
+status3 = StepStatus.new(:name => 'FAILED', :color => '#d9534f')
+status4 = StepStatus.new(:name => 'SKIPPED', :color => '#F89406')
 
 status1.save
 status2.save
@@ -45,26 +45,26 @@ project2.changeRequests << change3
 
 change1.steps << Step.new(stepNo: 1, action: 'cp file a0 to server x77', status: 'DONE', assignedTo: Staff.find(1))
 change2.steps << Step.new(stepNo: 1, action: 'mv tarball a1 to location y66', status: 'TODO', assignedTo: Staff.find(1))
-change3.steps << Step.new(stepNo: 1, action: 'scp zipfile a2 to box z55', status: 'DONE', assignedTo: Staff.find(2))
-change2.steps << Step.new(stepNo: 2, action: 'mv tarball a3 to server a44', status: 'DONE', assignedTo: Staff.find(2))
+change3.steps << Step.new(stepNo: 1, action: 'scp zipfile a2 to box z55', status: 'FAILED', assignedTo: Staff.find(2))
+change2.steps << Step.new(stepNo: 2, action: 'mv tarball a3 to server a44', status: 'SKIPPED', assignedTo: Staff.find(2))
 change1.steps << Step.new(stepNo: 2, action: 'scp file a5 to location b33', status: 'TODO', assignedTo: Staff.find(1))
-change2.steps << Step.new(stepNo: 3, action: 'cp tarball a6 to place c22', status: 'TODO', assignedTo: Staff.find(2))
+change2.steps << Step.new(stepNo: 3, action: 'cp tarball a6 to place c22', status: 'FAILED', assignedTo: Staff.find(2))
 change3.steps << Step.new(stepNo: 2, action: 'mv zipfile a7 to server d11', status: 'TODO', assignedTo: Staff.find(2))
 
-change1.steps << Step.new(stepNo: 4, action: 'scp file a0 to server x77', status: 'DONE', assignedTo: Staff.find(1))
+change1.steps << Step.new(stepNo: 4, action: 'scp file a0 to server x77', status: 'FAILED', assignedTo: Staff.find(1))
 change2.steps << Step.new(stepNo: 3, action: 'mv tarball a1 to box y66', status: 'DONE', assignedTo: Staff.find(1))
-change3.steps << Step.new(stepNo: 3, action: 'cp file a2 to location z55', status: 'TODO', assignedTo: Staff.find(2))
+change3.steps << Step.new(stepNo: 3, action: 'cp file a2 to location z55', status: 'SKIPPED', assignedTo: Staff.find(2))
 change2.steps << Step.new(stepNo: 4, action: 'mv tarball a3 to server a44', status: 'DONE', assignedTo: Staff.find(2))
-change1.steps << Step.new(stepNo: 5, action: 'cp file a5 to box b33', status: 'TODO', assignedTo: Staff.find(1))
+change1.steps << Step.new(stepNo: 5, action: 'cp file a5 to box b33', status: 'FAILED', assignedTo: Staff.find(1))
 change2.steps << Step.new(stepNo: 5, action: 'cp tarball a6 to location c22', status: 'DONE', assignedTo: Staff.find(2))
-change3.steps << Step.new(stepNo: 4, action: 'mv file a7 to server d11', status: 'TODO', assignedTo: Staff.find(1))
+change3.steps << Step.new(stepNo: 4, action: 'mv file a7 to server d11', status: 'SKIPPED', assignedTo: Staff.find(1))
 
 change1.steps << Step.new(stepNo: 6, action: 'cp file a0 to server x77', status: 'DONE', assignedTo: Staff.find(1))
 change2.steps << Step.new(stepNo: 6, action: 'smv tarball a1 to location y66', status: 'TODO', assignedTo: Staff.find(1))
-change3.steps << Step.new(stepNo: 5, action: 'cp file a2 to place z55', status: 'TODO', assignedTo: Staff.find(2))
+change3.steps << Step.new(stepNo: 5, action: 'cp file a2 to place z55', status: 'FAILED', assignedTo: Staff.find(2))
 change2.steps << Step.new(stepNo: 7, action: 'mv tarball a3 to server a44', status: 'TODO', assignedTo: Staff.find(2))
-change1.steps << Step.new(stepNo: 7, action: 'scp zipfile a5 to box b33', status: 'DONE', assignedTo: Staff.find(1))
-change3.steps << Step.new(stepNo: 6, action: 'cp tarball a6 to place c22', status: 'TODO',assignedTo: Staff.find(2))
+change1.steps << Step.new(stepNo: 7, action: 'scp zipfile a5 to box b33', status: 'SKIPPED', assignedTo: Staff.find(1))
+change3.steps << Step.new(stepNo: 6, action: 'cp tarball a6 to place c22', status: 'SKIPPED',assignedTo: Staff.find(2))
 change1.steps << Step.new(stepNo: 8, action: 'smv zipfile a7 to server d11', status: 'TODO', assignedTo: Staff.find(1))
 
 
@@ -72,12 +72,12 @@ change1.save
 change2.save
 change3.save
 
-log1 = Log.new(log_path: '/tmp/log1', step: change1.steps.first)
-log2 = Log.new(log_path: '/tmp/log2', step: change1.steps.first)
-log3 = Log.new(log_path: '/tmp/log3', step: change1.steps.second)
-log4 = Log.new(log_path: '/tmp/log4', step: change1.steps.third)
-log5 = Log.new(log_path: '/tmp/log5', step: change2.steps.second)
-log6 = Log.new(log_path: '/tmp/log6', step: change2.steps.second)
+log1 = Log.new(log_path: 'storage/2016/08/', file_name: 'log1.txt', mime_type: 'text/plain', step: change1.steps.first)
+log2 = Log.new(log_path: 'storage/2016/08/', file_name: 'log2.txt', mime_type: 'text/plain', step: change1.steps.first)
+log3 = Log.new(log_path: 'storage/2016/08/', file_name: 'log3.txt', mime_type: 'text/plain', step: change1.steps.second)
+log4 = Log.new(log_path: 'storage/2016/08/', file_name: 'log4.txt', mime_type: 'text/plain', step: change1.steps.third)
+log5 = Log.new(log_path: 'storage/2016/08/', file_name: 'log5.txt', mime_type: 'text/plain', step: change2.steps.second)
+log6 = Log.new(log_path: 'storage/2016/08/', file_name: 'log6.txt', mime_type: 'text/plain', step: change2.steps.second)
 
 
 log1.save
