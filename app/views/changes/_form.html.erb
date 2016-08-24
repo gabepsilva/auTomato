@@ -11,15 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_area :name %>
-  </div>
 
-  <div class="field">
-    <%= f.label :description %>
+    <%= f.text_area :name %>
+    <%= f.datetime_local_field( :implementation_date) %>
+
     <%= f.text_area :description %>
-  </div>
+
 
 
   <div class="actions">
