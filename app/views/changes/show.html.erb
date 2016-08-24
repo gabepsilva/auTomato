@@ -1,19 +1,28 @@
+<div class="show-action-header" %>
+  <div class="container">
+    <h2> <%= @change.name %> </h2>
+    <h5> &emsp; <%= @change.description %></h5>
+    <hr/>
+    <%= link_to '<i class="glyphicon glyphicon-plus">  </i> More info'.html_safe, edit_change_path(@change), style: 'color: white'; %> |
+    <%= link_to '<i class="glyphicon glyphicon-edit">  </i> Edit change'.html_safe, edit_change_path(@change), style: 'color: white'; %> |
+    <%= link_to '<i class="glyphicon glyphicon-th-large">  </i> Clone to'.html_safe, edit_change_path(@change), style: 'color: white'; %> |
+    <%= link_to '<i class="glyphicon glyphicon-folder-close">  </i> Close request'.html_safe, edit_change_path(@change), style: 'color: white'; %>
+  </div>
+</div>
+
+<%= render 'layouts/messages' %>
+
 <div class="container">
 
-  <p id="notice"><%= notice %></p>
+
+  <br/>
 
 
-  <h2> <%= @change.name %> </h2>
-  <p>
-  <h5><%= @change.description %></h5>
-  </p>
-
-
-  <p>
   <h4>
     <%= link_to " + Add Step", new_step_path(@change.id) %>
   </h4>
-  </p>
+  <br/>
+
 
   <table class="table table-hover table-responsive">
     <thead>

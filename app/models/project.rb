@@ -5,5 +5,7 @@ class Project < ApplicationRecord
 
   has_many :changeRequests, :class_name => 'Change', :foreign_key => 'project_id'
 
+  validates :name, :length => { :minimum => 2, :message => 'Name is too short. (2 minimum)' }
+
 
 end

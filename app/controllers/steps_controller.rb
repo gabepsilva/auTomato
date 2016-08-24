@@ -17,6 +17,7 @@ class StepsController < ApplicationController
     # @log = Log.new
     # @log.step = @step
 
+
   end
 
   def upload
@@ -64,6 +65,7 @@ class StepsController < ApplicationController
       @step.logs << log
     end
 
+    flash[:notice] = 'Log was successfully created.'
     render :show
 
 
