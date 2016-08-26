@@ -10,6 +10,17 @@
   </div>
 </div>
 
+<% if @change.errors.any? %>
+    <div class="error_explanation">
+      <div class="container">
+        <%= pluralize(@change.errors.count, "error") %> prohibited this project from being saved.
+      </div>
+    </div>
+<% end %>
+
+
+
+
 <%= render 'layouts/messages' %>
 
 <div class="container">

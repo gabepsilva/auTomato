@@ -1,5 +1,6 @@
 class ChangesController < ApplicationController
   before_action :set_change, only: [:show, :edit, :update, :destroy]
+  #before_action :process_owner, only: [:create]
 
   # GET /changes
   # GET /changes.json
@@ -28,6 +29,13 @@ class ChangesController < ApplicationController
   # POST /changes.json
   def create
     @change = Change.new(change_params)
+    @change.owner = process_owner
+    @change.project = process_project
+
+    puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
+    puts @change.inspect
+
+
 
     respond_to do |format|
       if @change.save
@@ -76,8 +84,17 @@ class ChangesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def change_params
-      params.require(:change).permit(:name, :description, :has_many, :Steps)
+      params.require(:change).permit(:name, :description, :implementation_date, :owner, :project )
     end
+
+  def process_owner
+    @change.owner = Staff.find_by_id(params[:change][:owner_attributes][:id].to_i) #unless @change.owner.id == params[:change][:owner_attributes][:id].to_i
+  end
+
+  def process_project
+    @change.project = Project.find_by_id(params[:change][:project_attributes][:id].to_i) #unless @change.owner.id == params[:change][:owner_attributes][:id].to_i
+  end
+
 
 
 end
