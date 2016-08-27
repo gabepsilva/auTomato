@@ -51,6 +51,8 @@
                   <td><%= link_to change.project.name, change.project %> </td>
                   <% unless change.implementation_date.nil? %>
                       <td><%= link_to change.implementation_date.strftime("%A, %B %d, %Y %H:%M %p"), change %> </td>
+                  <% else %>
+                      <td> Earliest Convenience</td>
                   <% end %>
                 </tr>
             <% end %>
