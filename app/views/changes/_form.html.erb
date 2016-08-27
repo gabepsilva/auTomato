@@ -5,10 +5,10 @@
   <%= bootstrap_form_for(change) do |f| %>
 
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-6">
           <%= f.text_field :name, label: 'Change name' %>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-6">
 
           <%= f.fields_for :project_attributes, @change.project do |c| %>
               <%= c.number_field :id, label: 'Project (ID):' %>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-6">
 
 
           <%= f.fields_for :owner_attributes, @change.owner do |c| %>
@@ -28,15 +28,17 @@
 
 
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-6">
 
           <label>Implementation date:</label>
-          <div class='input-group date' id='datetimepicker1'>
 
+          <div class='input-group date' id='datetimepicker1'>
+<span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
             <%= f.datetime_local_field(:implementation_date, skip_label: true) %>
-            <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+
+
           </div>
 
 
@@ -53,10 +55,7 @@
       </div>
 
 
-      <%= f.text_area :description, label: 'Change Desription' %>
-
-      <%= puts '!!!!!!!!!!!!!!!!!!' %>
-      <%= puts @change.errors.inspect %>
+      <%= f.text_area :description, label: 'Change Desription', rows: 10 %>
       <%= f.submit %>
 
   <% end %>
