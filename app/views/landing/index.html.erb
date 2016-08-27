@@ -5,13 +5,9 @@
     <h5> &emsp; Running on <%= Rails.env %> mode. Version 1.2.1 </h5>
 
     <hr/>
-    <%= link_to '<i class="glyphicon glyphicon-plus">  </i> More info'.html_safe, '#', style: 'color: white'; %>
-    |
-    <%= link_to '<i class="glyphicon glyphicon-edit">  </i> Edit change'.html_safe, '#', style: 'color: white'; %>
-    |
-    <%= link_to '<i class="glyphicon glyphicon-th-large">  </i> Clone to'.html_safe, '#', style: 'color: white'; %>
-    |
-    <%= link_to '<i class="glyphicon glyphicon-folder-close">  </i> Close request'.html_safe, '#', style: 'color: white'; %>
+    <%= link_to '<i class="glyphicon glyphicon-plus">  </i> New Project'.html_safe, new_project_path, style: 'color: white'; %>
+    &ensp; | &ensp;
+    <%= link_to '<i class="glyphicon glyphicon-refresh">  </i> New Change'.html_safe, new_change_path, style: 'color: white'; %>
 
   </div>
 </div>
@@ -21,12 +17,7 @@
 
 <div class="container">
 
-
   <br>
-
-
-
-
 
   <div class="row">
     <div class="col-md-12">
@@ -53,7 +44,7 @@
                   <td><%= link_to change.owner.name, change.owner unless change.owner.nil? %> </td>
                   <td><%= link_to change.project.name, change.project %> </td>
                   <% unless change.implementation_date.nil? %>
-                      <td><%= link_to change.implementation_date.strftime("%A, %B %d, %Y %H:%M %p"), change %> </td>
+                      <td><%= link_to change.print_implementation_date, change %> </td>
                   <% else %>
                       <td> Earliest Convenience</td>
                   <% end %>
@@ -63,7 +54,6 @@
 
           </table>
           <%= will_paginate @changes_calendar %>
-
 
         </div>
       </div>
@@ -79,8 +69,6 @@
           <h3 class="panel-title">Projects</h3>
         </div>
         <div class="panel-body">
-
-          <h4> <%= link_to '+ New Project', new_project_path %> </h4>
 
           <table class="table table-hover table-responsive">
             <thead>
@@ -115,8 +103,6 @@
           <h3 class="panel-title">Changes</h3>
         </div>
         <div class="panel-body">
-
-          <h4> <%= link_to '+ New Change', new_change_path %> </h4>
 
           <table class="table table-hover table-responsive">
             <thead>

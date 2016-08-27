@@ -23,6 +23,10 @@ class ChangesController < ApplicationController
 
   # GET /changes/1/edit
   def edit
+
+    puts '----------'
+    puts  @change.inspect
+
   end
 
   # POST /changes
@@ -75,6 +79,7 @@ class ChangesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

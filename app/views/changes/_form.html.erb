@@ -2,6 +2,8 @@
 
   <br/><br/>
 
+
+
   <%= bootstrap_form_for(change) do |f| %>
 
       <div class="row">
@@ -36,7 +38,11 @@
 <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
-            <%= f.datetime_local_field(:implementation_date, skip_label: true) %>
+
+
+
+            <%= f.datetime_local_field(:implementation_date, skip_label: true, id: 'input_datetimepicker1') %>
+
 
 
           </div>
@@ -45,8 +51,12 @@
           <script type="text/javascript">
             $(function () {
               $('#datetimepicker1').datetimepicker({
-                format: 'LLLL'
+                format: 'LLLL',
+
               });
+
+              $('#input_datetimepicker1').val("<%=  @change.print_implementation_date %>");
+
             });
           </script>
 
@@ -61,4 +71,3 @@
   <% end %>
 
 </div>
-
