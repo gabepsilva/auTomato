@@ -28,15 +28,34 @@
 
 
         </div>
-        <div class="col-sm-3">
-          <%= f.datetime_local_field(:implementation_date) %>
+        <div class="col-sm-5">
+
+          <label>Implementation date:</label>
+          <div class='input-group date' id='datetimepicker1'>
+
+            <%= f.datetime_local_field(:implementation_date, skip_label: true) %>
+            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+          </div>
+
+
+          <script type="text/javascript">
+            $(function () {
+              $('#datetimepicker1').datetimepicker({
+                format: 'LLLL'
+              });
+            });
+          </script>
+
+
         </div>
       </div>
 
 
       <%= f.text_area :description, label: 'Change Desription' %>
 
-<%= puts '!!!!!!!!!!!!!!!!!!'	  %>
+      <%= puts '!!!!!!!!!!!!!!!!!!' %>
       <%= puts @change.errors.inspect %>
       <%= f.submit %>
 

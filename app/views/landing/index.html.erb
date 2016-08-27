@@ -26,7 +26,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-danger ">
+      <div class="panel panel-primary ">
         <div class="panel-heading">
           <h3 class="panel-title">Next in calendar ...</h3>
         </div>
@@ -49,7 +49,9 @@
                   <td><%= link_to change.name, change %> </td>
                   <td><%= link_to change.owner.name, change.owner unless change.owner.nil? %> </td>
                   <td><%= link_to change.project.name, change.project %> </td>
-                  <td><%= link_to change.implementation_date, change %> </td>
+                  <% unless change.implementation_date.nil? %>
+                      <td><%= link_to change.implementation_date.strftime("%A, %B %d, %Y %H:%M %p"), change %> </td>
+                  <% end %>
                 </tr>
             <% end %>
 
