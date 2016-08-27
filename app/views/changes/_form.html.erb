@@ -1,30 +1,64 @@
-<%= bootstrap_form_for(change) do |f| %>
-  <% if change.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(change.errors.count, "error") %> prohibited this change from being saved:</h2>
+<div class="container">
 
-      <ul>
-      <% change.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+  <br/><br/>
+
+  <%= bootstrap_form_for(change) do |f| %>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <%= f.text_field :name, label: 'Change name' %>
+        </div>
+        <div class="col-sm-6">
+
+          <%= f.fields_for :project_attributes, @change.project do |c| %>
+              <%= c.number_field :id, label: 'Project (ID):' %>
+          <% end %>
+
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+
+
+          <%= f.fields_for :owner_attributes, @change.owner do |c| %>
+              <%= c.number_field :id, label: 'Owner (ID):' %>
+          <% end %>
+
+
+        </div>
+        <div class="col-sm-6">
+
+          <label>Implementation date:</label>
+
+          <div class='input-group date' id='datetimepicker1'>
+<span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+            <%= f.datetime_local_field(:implementation_date, skip_label: true) %>
+
+
+          </div>
+
+
+          <script type="text/javascript">
+            $(function () {
+              $('#datetimepicker1').datetimepicker({
+                format: 'LLLL'
+              });
+            });
+          </script>
+
+
+        </div>
+      </div>
+
+
+      <%= f.text_area :description, label: 'Change Desription', rows: 10 %>
+      <%= f.submit %>
+
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_area :name %>
-  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-
-
-<% end %>

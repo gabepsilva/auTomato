@@ -25,6 +25,49 @@
   <br>
 
   <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-primary ">
+        <div class="panel-heading">
+          <h3 class="panel-title">Next in calendar ...</h3>
+        </div>
+        <div class="panel-body">
+
+
+          <table class="table table-hover table-responsive">
+            <thead>
+            <tr>
+              <th>Change name</th>
+              <th>Owner</th>
+              <th>Project</th>
+              <th>Implementation date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @changes.each do |change| %>
+                <tr>
+                  <td><%= link_to change.name, change %> </td>
+                  <td><%= link_to change.owner.name, change.owner unless change.owner.nil? %> </td>
+                  <td><%= link_to change.project.name, change.project %> </td>
+                  <% unless change.implementation_date.nil? %>
+                      <td><%= link_to change.implementation_date.strftime("%A, %B %d, %Y %H:%M %p"), change %> </td>
+                  <% else %>
+                      <td> Earliest Convenience</td>
+                  <% end %>
+                </tr>
+            <% end %>
+
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
 
     <div class="col-md-6">
       <div class="panel panel-primary">

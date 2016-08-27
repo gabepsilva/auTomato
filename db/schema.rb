@@ -16,8 +16,9 @@ ActiveRecord::Schema.define(version: 20160816014810) do
     t.text     "name"
     t.text     "description"
     t.string   "chargeCode"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "implementation_date"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "owner_id"
     t.integer  "coordinator_id"
     t.integer  "project_id"

@@ -74,7 +74,7 @@ class StepsController < ApplicationController
   def download
 
     log = Log.find(params[:log])
-    puts log.inspect
+
 
     send_file(
         log.log_path + log.file_name,
