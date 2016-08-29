@@ -6,6 +6,9 @@ class LandingController < ApplicationController
     @changes = Change.all
     @changes_calendar = Change.paginate(page: params[:page], per_page: 5).order('implementation_date DESC')
 
+    @landing = Landing.first
+    @landing.links_to_display = %i(new_project new_change)
+
   end
 
   def new

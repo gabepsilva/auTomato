@@ -1,23 +1,13 @@
-<div class="show-action-header" %>
-  <div class="container">
 
-    <h2> AuTomato Dashboard </h2>
-    <h5> &emsp; Running on <%= Rails.env %> mode. Version 1.2.1 </h5>
 
-    <hr/>
-    <%= link_to '<i class="glyphicon glyphicon-plus">  </i> New Project'.html_safe, new_project_path, style: 'color: white'; %>
-    &ensp; | &ensp;
-    <%= link_to '<i class="glyphicon glyphicon-refresh">  </i> New Change'.html_safe, new_change_path, style: 'color: white'; %>
 
-  </div>
-</div>
-
-<%= render 'layouts/messages' %>
+<%= render partial: 'layouts/page_header', :locals => {:landing => @landing} %>
 
 
 <div class="container">
 
   <br>
+
 
   <div class="row">
     <div class="col-md-12">
@@ -26,6 +16,7 @@
           <h3 class="panel-title">Next in calendar ... </h3>
         </div>
         <div class="panel-body">
+
 
           <table class="table table-hover table-responsive">
             <thead>
@@ -39,22 +30,19 @@
 
             <tbody>
             <% @changes_calendar.each do |change| %>
+
                 <tr>
                   <td><%= link_to change.name, change %> </td>
-                  <td><%= link_to change.owner.name, change.owner unless change.owner.nil? %> </td>
+                  <td><%= link_to change.owner.name, change.owner %> </td>
                   <td><%= link_to change.project.name, change.project %> </td>
-                  <% unless change.implementation_date.nil? %>
-                      <td><%= link_to change.print_implementation_date, change %> </td>
-                  <% else %>
-                      <td> Earliest Convenience</td>
+                  <% present change do |change_presenter| %>
+                      <td><%= link_to change_presenter.print_implementation_date, change %></td>
                   <% end %>
                 </tr>
             <% end %>
             </tbody>
-
           </table>
           <%= will_paginate @changes_calendar %>
-
         </div>
       </div>
     </div>
@@ -117,7 +105,7 @@
             <% @changes.each do |change| %>
                 <tr>
                   <td><%= link_to change.name, change %> </td>
-                  <td><%= link_to change.owner.name, change.owner unless change.owner.nil? %> </td>
+                  <td><%= link_to change.owner.name, change.owner %> </td>
                   <td><%= link_to change.project.name, change.project %> </td>
                 </tr>
             <% end %>
@@ -128,11 +116,8 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
-
 
 
 

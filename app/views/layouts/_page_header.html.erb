@@ -1,0 +1,17 @@
+<div class="show-action-header" %>
+  <div class="container">
+
+    <% present landing do |landing_presenter| %>
+
+        <h2> <%= landing.title %>   </h2>
+        <h5> &emsp;<%= landing.sub_title %> </h5>
+        <hr/>
+        <%= landing_presenter.print_links %>
+    <% end %>
+
+  </div>
+</div>
+
+<%= render 'layouts/messages' %>
+
+
