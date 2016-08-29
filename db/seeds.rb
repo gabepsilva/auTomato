@@ -6,6 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+landing = Landing.new
+landing.title = 'AuTomato'
+landing.sub_title = "Running on #{Rails.env} mode. Version 1.2.1"
+landing.primary_color = 'purple'
+landing.save
 
 staff1 = Staff.new(:name => 'nobody', :email => 'nobody@email.email', :contact => 'nobody@contact.email')
 staff2 = Staff.new(:name => 'Dummy', :email => 'dummy@dummy.email', :contact => 'dummy@contact.email')

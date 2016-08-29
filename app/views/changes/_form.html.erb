@@ -3,71 +3,71 @@
   <br/><br/>
 
 
+  <% present change do |change_presenter| %>
+      <%= bootstrap_form_for(change) do |f| %>
 
-  <%= bootstrap_form_for(change) do |f| %>
+          <div class="row">
+            <div class="col-sm-6">
+              <%= f.text_field :name, label: 'Change name' %>
+            </div>
+            <div class="col-sm-6">
 
-      <div class="row">
-        <div class="col-sm-6">
-          <%= f.text_field :name, label: 'Change name' %>
-        </div>
-        <div class="col-sm-6">
-
-          <%= f.fields_for :project_attributes, @change.project do |c| %>
-              <%= c.number_field :id, label: 'Project (ID):' %>
-          <% end %>
-
-
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-6">
+              <%= f.fields_for :project_attributes, change_presenter.project do |c| %>
+                  <%= c.number_field :id, label: 'Project (ID):' %>
+              <% end %>
 
 
-          <%= f.fields_for :owner_attributes, @change.owner do |c| %>
-              <%= c.number_field :id, label: 'Owner (ID):' %>
-          <% end %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
 
 
-        </div>
-        <div class="col-sm-6">
+              <%= f.fields_for :owner_attributes, @change.owner do |c| %>
+                  <%= c.number_field :id, label: 'Owner (ID):' %>
+              <% end %>
 
-          <label>Implementation date:</label>
 
-          <div class='input-group date' id='datetimepicker1'>
+            </div>
+            <div class="col-sm-6">
+
+              <label>Implementation date:</label>
+
+              <div class='input-group date' id='datetimepicker1'>
 <span class="input-group-addon">
               <span class="glyphicon glyphicon-calendar"></span>
             </span>
 
 
 
-            <%= f.datetime_local_field(:implementation_date, skip_label: true, id: 'input_datetimepicker1') %>
+                <%= f.datetime_local_field(:implementation_date, skip_label: true, id: 'input_datetimepicker1') %>
 
 
+              </div>
 
+
+              <script type="text/javascript">
+                $(function () {
+                  $('#datetimepicker1').datetimepicker({
+                    format: 'LLLL',
+
+                  });
+
+                  $('#input_datetimepicker1').val("<%=  change_presenter.print_implementation_date %>");
+
+                });
+              </script>
+
+
+            </div>
           </div>
 
 
-          <script type="text/javascript">
-            $(function () {
-              $('#datetimepicker1').datetimepicker({
-                format: 'LLLL',
+          <%= f.text_area :description, label: 'Change Desription', rows: 10 %>
+          <%= f.submit %>
 
-              });
+      <% end %>
 
-              $('#input_datetimepicker1').val("<%=  @change.print_implementation_date %>");
-
-            });
-          </script>
-
-
-        </div>
       </div>
-
-
-      <%= f.text_area :description, label: 'Change Desription', rows: 10 %>
-      <%= f.submit %>
-
   <% end %>
-
-</div>
