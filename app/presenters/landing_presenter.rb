@@ -24,17 +24,4 @@ class LandingPresenter < BasePresenter
     @links.chomp(add_separator).html_safe
   end
 
-
-  private
-
-  def add_separator
-
-    if @links.nil?
-      ''.html_safe
-    else
-      ' &ensp; | &ensp; '.html_safe
-    end
-
-  end
-
 end

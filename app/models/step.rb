@@ -9,6 +9,8 @@ class Step < ApplicationRecord
 
   validates :change_id, presence: true
 
+  attr_accessor :links_to_display
+
 
 
 end

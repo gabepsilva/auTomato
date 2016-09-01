@@ -12,7 +12,7 @@
             </div>
             <div class="col-sm-6">
 
-              <%= f.fields_for :project_attributes, change_presenter.project do |c| %>
+              <%= f.fields_for :project_attributes, @change.project do |c| %>
                   <%= c.number_field :id, label: 'Project (ID):' %>
               <% end %>
 

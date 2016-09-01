@@ -1,27 +1,8 @@
-<% if @project.errors.any? %>
-    <div class="error_explanation">
-      <div class="container">
-        <%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved.
-      </div>
-    </div>
-<% end %>
+<%= render partial: 'landing/page_header', locals: {object: @project} %>
+
+<%= render 'form', project: @project %>
 
 
-<div class="container">
-
-  <div class="col-md-6">
-
-    <h1>New Project</h1>
-    <div class="panel panel-default">
-      <div class="panel-body">
 
 
-        <%= render 'form', project: @project %>
 
-        <%= link_to 'Back', projects_path %>
-      </div>
-    </div>
-
-
-  </div>
-</div>

@@ -54,16 +54,16 @@ ActiveRecord::Schema.define(version: 20160828172925) do
   end
 
   create_table "step_statuses", force: :cascade do |t|
-    t.string "name"
-    t.string "color"
+    t.string "name",  default: "unset"
+    t.string "color", default: "gray"
   end
 
   create_table "steps", force: :cascade do |t|
     t.integer  "stepNo"
-    t.string   "action"
-    t.string   "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "action",     default: " "
+    t.string   "status",     default: "unset"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "change_id"
     t.integer  "assignedTo"
   end

@@ -1,0 +1,42 @@
+<% present object do |object_presenter| %>
+
+
+    <div class="show-action-header" %>
+      <div class="container">
+        <h2> <%= object_presenter.title %>   </h2>
+        <h5> &emsp;<%= object_presenter.sub_title %> </h5>
+        <hr/>
+        <%= object_presenter.print_links %>
+      </div>
+    </div>
+
+
+    <% if object_presenter.errors.any? %>
+        <div class="error_explanation" style="margin-top: 0px;">
+          <div class="container">
+            <%= pluralize(object_presenter.errors.count, "error") %> prohibited this project from being saved.
+          </div>
+        </div>
+
+        <div class="container alert alert-danger" style="margin: 10px auto; padding: 0px">
+          <ul>
+            <% object_presenter.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <% unless flash.notice.nil? %>
+        <div class="notice">
+          <div class="container">
+            <% flash.each do |name, msg| %>
+                <%= msg %>
+                <br/>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+
+<% end %>

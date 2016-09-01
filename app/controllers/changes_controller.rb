@@ -1,6 +1,6 @@
 class ChangesController < ApplicationController
-  before_action :set_change, only: [:show, :edit, :update, :destroy]
-  #before_action :process_owner, only: [:create]
+ before_action :set_change, only: [:show, :edit, :update, :destroy]
+ #before_action :process_owner, only: [:create]
 
   # GET /changes
   # GET /changes.json
@@ -12,13 +12,18 @@ class ChangesController < ApplicationController
   # GET /changes/1.json
   def show
     @steps = @change.steps.reorder('stepNo ASC')
+    @step = Step.new
+    @step.id = ( Step.last.id ) +1
     @colors = StepStatus.all
+
+    @change.links_to_display = %i(more_info add_step_modal edit_change_to clone_change_to update_change_status)
 
   end
 
   # GET /changes/new
   def new
     @change = Change.new
+    @change.links_to_display = %i(clone_change_from)
   end
 
   # GET /changes/1/edit
@@ -35,10 +40,7 @@ class ChangesController < ApplicationController
     @change = Change.new(change_params)
     @change.owner = process_owner
     @change.project = process_project
-
-    puts '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
-    puts @change.inspect
-
+    @change.links_to_display = %i(clone_change_from)
 
 
     respond_to do |format|

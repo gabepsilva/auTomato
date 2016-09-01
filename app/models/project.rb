@@ -8,4 +8,6 @@ class Project < ApplicationRecord
   validates :name, :length => { :minimum => 2, :message => 'Name is too short. (2 minimum)' }
 
 
+  attr_accessor :links_to_display
+
 end

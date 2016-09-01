@@ -17,7 +17,9 @@
                 </div>
             <% end %>
 
+            <%#= f.number_field :id %>
             <%= f.hidden_field :change_id %>
+
 
             <%= f.number_field :stepNo, label: 'Step #' %>
 
@@ -27,7 +29,7 @@
             <fieldset class="form-group">
               <hr/>
               <%= f.fields_for :assignedTo_attributes, @step.assignedTo do |c| %>
-                  <%= c.number_field :id, label: 'Assigned to (ID):' %>
+                  <%= c.text_field :name, label: 'Assigned to (ID):' %>
               <% end %>
               <hr/>
             </fieldset>

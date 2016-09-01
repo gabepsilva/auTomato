@@ -1,29 +1,3 @@
-<div class="show-action-header" %>
-  <div class="container" >
-
-    <h2>New Change </h2>
-    <h5> &emsp; <%= @change.project.nil? ? '-' : @change.project.name %> </h5>
-
-    <hr/>
-    <%= link_to '<i class="glyphicon glyphicon-plus">  </i> More info'.html_safe, '#', style: 'color: white'; %>
-    |
-    <%= link_to '<i class="glyphicon glyphicon-edit">  </i> Edit change'.html_safe, '#', style: 'color: white'; %>
-    |
-    <%= link_to '<i class="glyphicon glyphicon-th-large">  </i> Clone to'.html_safe, '#', style: 'color: white'; %>
-    |
-    <%= link_to '<i class="glyphicon glyphicon-folder-close">  </i> Close request'.html_safe, '#', style: 'color: white'; %>
-
-  </div>
-</div>
-
-<% if @change.errors.any? %>
-    <div class="error_explanation" style="margin-top: 0px;">
-      <div class="container">
-        <%= pluralize(@change.errors.count, "error") %> prohibited this project from being saved.
-      </div>
-    </div>
-<% end %>
-
-<%= render 'layouts/messages' %>
+<%= render partial: 'landing/page_header', locals: {object: @change} %>
 
 <%= render 'form', change: @change %>

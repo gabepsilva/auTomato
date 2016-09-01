@@ -1,7 +1,8 @@
 class StepsController < ApplicationController
+  #before_action :process_assignedTo, only: [:update]
   before_action :set_step, only: [:show, :edit, :update, :destroy, :upload]
-  before_action :set_change, only: [:create] # new crash to create new step
-  before_action :process_assignedTo, only: [:update]
+ # before_action :set_change, only: [:create] # new crash to create new step
+
 
 
   # GET /steps
@@ -86,7 +87,10 @@ class StepsController < ApplicationController
   # GET /steps/new
   def new
     @step = Step.new
+    @step.id = (Step.last.id) + 1
+
     @step.change_id = params[:change_id]
+    @step.links_to_display = %i(empty)
 
     @change = Change.find(params[:change_id])
     @step.stepNo = @change.steps.count + 1
@@ -94,6 +98,11 @@ class StepsController < ApplicationController
     @step.assignedTo = Staff.first
 
     @step_statuses = StepStatus.all
+
+#    @step.save
+
+
+    render 'edit.js.erb'
 
 
   end
@@ -114,15 +123,15 @@ class StepsController < ApplicationController
   # POST /steps
   # POST /steps.json
   def create
+
     @step = Step.new(step_params)
-    #Nobody is the first record in the table
-    @step.assignedTo = Staff.first
+    @step.assignedTo = process_assignedTo
 
     @step.stepNo = @step.change.steps.count +1
 
     respond_to do |format|
       if @step.save
-        format.html { redirect_to @change, notice: 'Step was successfully created.' }
+        format.html { redirect_to @step.change, notice: 'Step was successfully created.' }
         format.json { render :show, status: :created, location: @step }
       else
         format.html { render :new }
@@ -135,7 +144,6 @@ class StepsController < ApplicationController
   # PATCH/PUT /steps/1.json
   def update
     respond_to do |format|
-
 
       if @step.update(step_params)
         format.html { redirect_to @step.change, notice: 'Step was successfully updated.' }
@@ -167,7 +175,8 @@ class StepsController < ApplicationController
   end
 
   def set_change
-    @step = Step.new(step_params)
+  #  @step = Step.new(step_params)
+    @step = Step.where(id: params[:id])
 
     @change = if @step.nil?
                 Change.find(params[:change_id])
@@ -192,11 +201,15 @@ class StepsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def step_params
     #params.require(:step).permit(:stepNo, :action, :status, :log, :change_id)
-    params.require(:step).permit(:stepNo, :action, :status, :log, :change_id, assignedTo_attributes: [:id])
+    params.require(:step).permit(:stepNo, :action, :status, :log, :change_id, assignedTo_attributes: [:name])
   end
 
   def process_assignedTo
-    @step.assignedTo = Staff.find_by_id(params[:step][:assignedTo_attributes][:id].to_i) unless @step.assignedTo.id == params[:step][:assignedTo_attributes][:id].to_i
+
+    #@step = set_step if @step.nil?
+
+    @step.assignedTo = Staff.find_by_name(params[:step][:assignedTo_attributes][:name]) #unless @step.assignedTo.nil? ||  @step.assignedTo.id == params[:step][:assignedTo_attributes][:id].to_i
+
   end
 
 end
