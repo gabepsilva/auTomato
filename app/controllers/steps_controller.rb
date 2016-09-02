@@ -14,11 +14,7 @@ class StepsController < ApplicationController
   # GET /steps/1
   # GET /steps/1.json
   def show
-
-    # @log = Log.new
-    # @log.step = @step
-
-
+    @step.links_to_display = %i(more_info add_log edit_step)
   end
 
   def upload

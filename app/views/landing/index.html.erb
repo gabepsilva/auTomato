@@ -1,24 +1,8 @@
-<div class="show-action-header" %>
-  <div class="container">
-
-    <% present @landing do |landing_presenter| %>
-
-        <h2> <%= @landing.title %>   </h2>
-        <h5> &emsp;<%= @landing.sub_title %> </h5>
-        <hr/>
-        <%= landing_presenter.print_links %>
-    <% end %>
-
-  </div>
-</div>
-<%= render 'layouts/messages' %>
-
-
+<%= render partial: 'landing/page_header', locals: {object: @landing} %>
 
 <div class="container">
 
   <br>
-
 
   <div class="row">
     <div class="col-md-12">
@@ -26,9 +10,8 @@
         <div class="panel-heading">
           <h3 class="panel-title">Next in calendar ... </h3>
         </div>
+
         <div class="panel-body">
-
-
           <table class="table table-hover table-responsive">
             <thead>
             <tr>
@@ -38,7 +21,6 @@
               <th>Implementation date</th>
             </tr>
             </thead>
-
             <tbody>
             <% @changes_calendar.each do |change| %>
 
@@ -47,7 +29,7 @@
                   <td><%= link_to change.owner.name, change.owner %> </td>
                   <td><%= link_to change.project.name, change.project %> </td>
                   <% present change do |change_presenter| %>
-                      <td><%= link_to change_presenter.print_implementation_date, change %></td>
+                      <td><%= link_to change_presenter.print_implementation_date, edit_change_path(change) %></td>
                   <% end %>
                 </tr>
             <% end %>
@@ -55,6 +37,7 @@
           </table>
           <%= will_paginate @changes_calendar %>
         </div>
+
       </div>
     </div>
   </div>
@@ -67,8 +50,8 @@
         <div class="panel-heading">
           <h3 class="panel-title">Projects</h3>
         </div>
-        <div class="panel-body">
 
+        <div class="panel-body">
           <table class="table table-hover table-responsive">
             <thead>
             <tr>
@@ -120,7 +103,6 @@
                   <td><%= link_to change.project.name, change.project %> </td>
                 </tr>
             <% end %>
-
             </tbody>
           </table>
 
@@ -129,6 +111,3 @@
     </div>
   </div>
 </div>
-
-
-

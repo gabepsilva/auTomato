@@ -1,0 +1,8 @@
+<% labels =  StepStatus.all  %>
+
+<% labels.each do |l|%>
+
+.label--<%= l.name %> {
+  background-color: <%= l.color %>;
+}
+<%end %>

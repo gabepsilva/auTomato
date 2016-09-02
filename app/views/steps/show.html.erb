@@ -1,32 +1,10 @@
+<%= render partial: 'landing/page_header', locals: {object: @step} %>
 
 <%= javascript_include_tag 'steps' %>
-
-<div class="show-action-header" %>
-  <div class="container overlay">
-
-    <h2> Step # <%= @step.stepNo %> of <%= @step.change.name.slice(0, 20) %></h2>
-    <h5> &emsp; <%= @step.action %> </h5>
-
-    <hr/>
-    <%= link_to '<i class="glyphicon glyphicon-plus">  </i> More info'.html_safe, edit_step_path(@step), style: 'color: white'; %>
-    |
-    <%= link_to '<i class="glyphicon glyphicon-edit">  </i> Edit change'.html_safe, edit_step_path(@step), style: 'color: white'; %>
-    |
-    <%= link_to '<i class="glyphicon glyphicon-th-large">  </i> Clone to'.html_safe, edit_step_path(@step), style: 'color: white'; %>
-    |
-    <%= link_to '<i class="glyphicon glyphicon-folder-close">  </i> Close request'.html_safe, edit_step_path(@step), style: 'color: white'; %>
-
-  </div>
-</div>
-
-<%= render 'layouts/messages' %>
 
 <div class="container">
 
   <br/>
-  <h4><a href="#" id="add-log"> + Create new Log </a></h4>
-  <hr/>
-
 
   <%= bootstrap_form_for :upload, {:url => steps_log_upload_path, :html => {:multipart => true}} do |f| %>
 

@@ -2,6 +2,15 @@ class LandingPresenter < BasePresenter
   presents :landing
 
 
+  def title
+    landing.title.to_s.empty? ? 'Create new change' : landing.title
+  end
+
+  def sub_title
+    landing.sub_title.empty? ? 'Hint: Changes can also be cloned.' : landing.sub_title
+  end
+
+
   def print_links
 
     @links = ''
