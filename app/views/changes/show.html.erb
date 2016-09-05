@@ -25,7 +25,7 @@
           <td><%= link_to step.action, edit_step_path(step), remote: true %></td>
           <td><%= link_to step.status, edit_step_path(step), remote: true, class: "label label--#{step.status}" %> </td>
           <td><%= link_to "<span class='badge alert-info'>#{step.logs.count}</span>".html_safe, step %></td>
-          <td><%= link_to step.assignedTo.name, step.assignedTo %></td>
+          <td><%= link_to step.assignedTo.name, '#' %></td>
         </tr>
     <% end %>
     </tbody>

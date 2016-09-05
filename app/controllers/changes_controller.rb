@@ -95,7 +95,7 @@ class ChangesController < ApplicationController
     end
 
   def process_owner
-    @change.owner = Staff.find_by_id(params[:change][:owner_attributes][:id].to_i) #unless @change.owner.id == params[:change][:owner_attributes][:id].to_i
+    @change.owner = User.find_by_id(params[:change][:owner_attributes][:id].to_i) #unless @change.owner.id == params[:change][:owner_attributes][:id].to_i
   end
 
   def process_project

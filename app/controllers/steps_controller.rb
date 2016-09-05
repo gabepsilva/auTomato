@@ -139,9 +139,17 @@ class StepsController < ApplicationController
   # PATCH/PUT /steps/1
   # PATCH/PUT /steps/1.json
   def update
+
+
+    @step = Step.find_by_id(params[:id])
+
+    @step.attributes = step_params
+    @step.assignedTo = process_assignedTo
+
+
     respond_to do |format|
 
-      if @step.update(step_params)
+      if @step.save(validate: false)
         format.html { redirect_to @step.change, notice: 'Step was successfully updated.' }
         format.json { render :show, status: :ok, location: @step }
       else
@@ -204,7 +212,8 @@ class StepsController < ApplicationController
 
     #@step = set_step if @step.nil?
 
-    @step.assignedTo = Staff.find_by_name(params[:step][:assignedTo_attributes][:name]) #unless @step.assignedTo.nil? ||  @step.assignedTo.id == params[:step][:assignedTo_attributes][:id].to_i
+    @step.assignedTo = User.find_by_name(params[:step][:assignedTo_attributes][:name]) #unless @step.assignedTo.nil? ||  @step.assignedTo.id == params[:step][:assignedTo_attributes][:id].to_i
+    @step.assignedTo
 
   end
 
