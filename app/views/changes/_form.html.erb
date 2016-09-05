@@ -13,7 +13,8 @@
             <div class="col-sm-6">
 
               <%= f.fields_for :project_attributes, @change.project do |c| %>
-                  <%= c.number_field :id, label: 'Project (ID):' %>
+                  <%= c.text_field :name, class: "search-query", type: "search", data: {autocomplete: changes_project_autocomplete_path}, 'data-auto-focus' => true, label: 'Project (NAME)' %>
+
               <% end %>
 
 
@@ -25,7 +26,8 @@
 
 
               <%= f.fields_for :owner_attributes, @change.owner do |c| %>
-                  <%= c.number_field :id, label: 'Owner (ID):' %>
+                  <%#= c.number_field :id, label: 'Owner (ID):' %>
+                  <%= c.text_field :name, class: "search-query", type: "search", data: {autocomplete: changes_owner_autocomplete_path}, 'data-auto-focus' => true, label: 'Change owner (NAME)' %>
               <% end %>
 
 
