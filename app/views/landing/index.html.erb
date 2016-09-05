@@ -26,7 +26,7 @@
 
                 <tr>
                   <td><%= link_to change.name, change %> </td>
-                  <td><%= link_to change.owner.name, change.owner %> </td>
+                  <td><%= link_to change.owner.name, '#' %> </td>
                   <td><%= link_to change.project.name, change.project %> </td>
                   <% present change do |change_presenter| %>
                       <td><%= link_to change_presenter.print_implementation_date, edit_change_path(change) %></td>
@@ -67,7 +67,7 @@
                   <td><%= project.description %></td>
                   <td>
                     <% project.members.each do |mb| %>
-                        <%= link_to mb.name, mb %>
+                        <%= link_to mb.name, '#' %>
                     <% end %>
                   </td>
                 </tr>
@@ -99,7 +99,7 @@
             <% @changes.each do |change| %>
                 <tr>
                   <td><%= link_to change.name, change %> </td>
-                  <td><%= link_to change.owner.name, change.owner %> </td>
+                  <td><%= link_to change.owner.name, '#' %> </td>
                   <td><%= link_to change.project.name, change.project %> </td>
                 </tr>
             <% end %>

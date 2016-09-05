@@ -204,7 +204,7 @@ class StepsController < ApplicationController
 
     #@step = set_step if @step.nil?
 
-    @step.assignedTo = Staff.find_by_name(params[:step][:assignedTo_attributes][:name]) #unless @step.assignedTo.nil? ||  @step.assignedTo.id == params[:step][:assignedTo_attributes][:id].to_i
+    @step.assignedTo = User.find_by_name(params[:step][:assignedTo_attributes][:name]) #unless @step.assignedTo.nil? ||  @step.assignedTo.id == params[:step][:assignedTo_attributes][:id].to_i
 
   end
 
