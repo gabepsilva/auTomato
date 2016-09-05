@@ -5,20 +5,21 @@ Rails.application.routes.draw do
   devise_for :users
   resources :logs
   resources :step_statuses
-  get 'landing/new'
 
+  get 'landing/new'
   get 'landing/create'
 
+  get 'changes/project_autocomplete', to: 'changes#project_autocomplete', as: 'changes_project_autocomplete'
+  get 'changes/owner_autocomplete', to: 'changes#owner_autocomplete', as: 'changes_owner_autocomplete'
   resources :projects
+
   resources :staffs
   resources :steps,   :except => [:index, :new]
   resources :changes
   root to: 'landing#index'
 
   get 'steps/new/:change_id', to: 'steps#new', as: 'new_step'
-
   post 'steps/:id/log', to: 'steps#upload', as: 'steps_log_upload'
-
   get 'steps/:id/download/:log', to: 'steps#download', as: 'steps_download'
 
 

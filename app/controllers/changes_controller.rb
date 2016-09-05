@@ -2,6 +2,8 @@ class ChangesController < ApplicationController
  before_action :set_change, only: [:show, :edit, :update, :destroy]
  #before_action :process_owner, only: [:create]
 
+ autocomplete :project, :name, :full => true
+
   # GET /changes
   # GET /changes.json
   def index
@@ -22,6 +24,7 @@ class ChangesController < ApplicationController
 
   # GET /changes/new
   def new
+
     @change = Change.new
     @change.links_to_display = %i(clone_change_from)
   end
@@ -82,6 +85,26 @@ class ChangesController < ApplicationController
     end
   end
 
+    def project_autocomplete
+      @projects = Project.order(:name).where("name LIKE ?", "%#{params[:term]}%")
+      respond_to do |format|
+        format.html
+        format.json {
+          render json: @projects.map(&:name).to_json
+        }
+      end
+    end
+
+ def owner_autocomplete
+   @users = User.order(:name).where("name LIKE ?", "%#{params[:term]}%")
+   respond_to do |format|
+     format.html
+     format.json {
+       render json: @users.map(&:name).to_json
+     }
+   end
+ end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -95,11 +118,11 @@ class ChangesController < ApplicationController
     end
 
   def process_owner
-    @change.owner = User.find_by_id(params[:change][:owner_attributes][:id].to_i) #unless @change.owner.id == params[:change][:owner_attributes][:id].to_i
+    @change.owner = User.find_by_name(params[:change][:owner_attributes][:name]) #unless @change.owner.id == params[:change][:owner_attributes][:id].to_i
   end
 
   def process_project
-    @change.project = Project.find_by_id(params[:change][:project_attributes][:id].to_i) #unless @change.owner.id == params[:change][:owner_attributes][:id].to_i
+    @change.project = Project.find_by_name(params[:change][:project_attributes][:name]) #unless @change.owner.id == params[:change][:owner_attributes][:id].to_i
   end
 
 
