@@ -9,10 +9,12 @@
 </head>
 
 <body>
-  <%= render 'layouts/navigation' if user_signed_in? %>
+  <%#= render 'layouts/navigation' if user_signed_in? %>
   <%= yield %>
 
-  <%= debug(params) if Rails.env.development? && user_signed_in? %>
+  <%= render 'layouts/footer' if user_signed_in? %>
+
+  <%= debug(params) if Rails.env.development? && user_signed_in? && false %>
 
 
 </body>
