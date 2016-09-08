@@ -107,7 +107,7 @@
 
     .login--username-container, .login--password-container {
       float: left;
-      background-color:  darkslateblue;
+      background-color: darkslateblue;
       width: 50%;
       height: 120px;
       padding: 0.5em;
@@ -123,7 +123,7 @@
 
     .login--active .login--username-container {
       transform: perspective(1000px) rotateY(0deg);
-      background-color:  darkslateblue;
+      background-color: darkslateblue;
     }
 
     footer {
@@ -133,10 +133,6 @@
     }
 
   </style>
-
-
-  <script src="js/prefixfree.min.js"></script>
-
 
 </head>
 
@@ -159,35 +155,12 @@
         </div>
       </div>
       <div class='login--toggle-container'>
-        <small>Hey you,</small>
-        <div class='js-toggle-login'>Login</div>
-        <small>already</small>
+        <h1>Welcome to</h1>
+        <div class='js-toggle-login '>AuTomato</div>
+        <h5>Controlled system changes</h5>
       </div>
     </div>
 
 <% end %>
-
-<!--
-
-<footer>
-  <a class='twitter-follow-button' data-show-count='false' href='https://twitter.com/code_dependant'>
-    Follow @code_dependant
-  </a>
-  <script>!function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-    if (!d.getElementById(id)) {
-      js = d.createElement(s);
-      js.id = id;
-      js.src = p + '://platform.twitter.com/widgets.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }
-  }(document, 'script', 'twitter-wjs');</script>
-</footer>
- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-<script src="js/index.js"></script>
-
--->
-<%#= render "devise/shared/links" %>
 </body>
 </html>

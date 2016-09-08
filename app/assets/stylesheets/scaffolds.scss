@@ -38,6 +38,10 @@ div {
   }
 }
 
+label {
+  display: block;
+}
+
 .notice {
   background-color: #5cb85c;
   color: #fff;
@@ -72,10 +76,6 @@ div {
   }
 }
 
-label {
-  display: block;
-}
-
 .step_label {
 
   display: inline-block;
@@ -96,10 +96,42 @@ label {
 }
 
 .show-action-header {
-  background-color: darkslateblue;
+  background-color: #3f51b5;
   color: white;
+  font-weight: 600;
   padding: 0px 0px 10px 0px;
   #margin-top: -30px;
+}
+
+.breadcrumb--larger {
+
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: white;
+  background-color: #303f9f;
+
+
+
+  a {
+    color: white;
+  }
+
+  .active {
+    color: #c5cae9;
+  }
+
+  .glyphicon {
+    display: block;
+    text-align: center;
+  }
+  p{
+    text-align: center;
+    margin: 0 10px 0 10px;
+
+  }
+  li:before {
+    display: none;
+  }
+
 }
 
 .overlay {
@@ -119,8 +151,7 @@ ul.ui-autocomplete {
   z-index: 1100;
 }
 
-
-.footer-basic{
+.footer-basic {
 
   width: 100%;
   margin-top: 80px;

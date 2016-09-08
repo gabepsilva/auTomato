@@ -34,5 +34,22 @@ class ProjectPresenter < BasePresenter
   end
 
 
+  def print_breadcrumb
+
+    if project.name.to_s.empty?
+
+      self.breadcrumb_links << "<li class='active'> <p><span class='glyphicon glyphicon-th-large'></span>Create new Project</p></li>".html_safe
+
+    else
+
+      self.breadcrumb_links << "<li class='active'> <p><span class='glyphicon glyphicon-th-large'></span>#{project.name.truncate(@truncate_NO)}</p></li>".html_safe
+
+    end
+
+    super
+
+  end
+
+
 
 end
