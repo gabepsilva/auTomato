@@ -6,7 +6,7 @@ class ProjectPresenter < BasePresenter
 
 
   def title
-    project.name.to_s.empty? ? 'Create new Project' : project.name
+    project.name.to_s.empty? ? 'Create new project' : project.name
   end
 
   def sub_title
@@ -38,7 +38,7 @@ class ProjectPresenter < BasePresenter
 
     if project.name.to_s.empty?
 
-      self.breadcrumb_links << "<li class='active'> <p><span class='glyphicon glyphicon-th-large'></span>Create new Project</p></li>".html_safe
+      self.breadcrumb_links << "<li class='active'> <p><span class='glyphicon glyphicon-th-large'></span>Create new project</p></li>".html_safe
 
     else
 

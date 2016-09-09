@@ -1,7 +1,6 @@
 <div class="container">
 
-  <br/><br/>
-
+  <br/>
 
   <% present change do |change_presenter| %>
       <%= bootstrap_form_for(change) do |f| %>
@@ -67,7 +66,7 @@
 
 
           <%= f.text_area :description, label: 'Change Desription', rows: 10 %>
-          <%= f.submit %>
+          <%= f.submit class: 'btn btn-success pull-right' %>
 
       <% end %>
 

@@ -12,14 +12,11 @@
           </div>
           <div class="col-sm-2">
             <div class="dropdown pull-right">
-              <button class="btn btn-primary btn-primary--power-menu dropdown-toggle" type="button" data-toggle="dropdown">power
-                menu
+              <button class="btn btn-primary btn-primary--power-menu dropdown-toggle" type="button" data-toggle="dropdown"><%= current_user.name %>
+                's menu
                 <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">JavaScript</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><%=	 link_to('Logout', destroy_user_session_path, :method => :delete) if user_signed_in? %></li>   destroy_user_session
               </ul>
             </div>
           </div>
