@@ -18,7 +18,6 @@ a {
 
   &:hover {
     color: #fff;
-    background-color: #000;
   }
 }
 
@@ -40,6 +39,12 @@ div {
 
 label {
   display: block;
+}
+
+hr{
+
+  margin: 5px 0;
+
 }
 
 .notice {
@@ -100,7 +105,24 @@ label {
   color: white;
   font-weight: 600;
   padding: 0px 0px 10px 0px;
-  #margin-top: -30px;
+
+  .btn-primary--power-menu {
+
+    background-color: transparent;
+    padding: 0;
+    border: 0;
+
+  }
+
+  .btn-primary--power-menu:hover {
+    text-decoration: underline;
+  }
+
+
+  .dropdown-toggle:active, .open .dropdown-toggle {
+    background: transparent !important;
+  }
+
 }
 
 .breadcrumb--larger {
@@ -108,8 +130,6 @@ label {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   color: white;
   background-color: #303f9f;
-
-
 
   a {
     color: white;
@@ -123,7 +143,7 @@ label {
     display: block;
     text-align: center;
   }
-  p{
+  p {
     text-align: center;
     margin: 0 10px 0 10px;
 
