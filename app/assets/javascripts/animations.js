@@ -30,3 +30,13 @@ $(function () {
     });
 });
 
+
+
+$(function () {
+    $('.notice').hide();
+    $(".notice").animate({
+        width:'toggle'
+    },300);
+});
+
+

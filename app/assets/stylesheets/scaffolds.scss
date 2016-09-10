@@ -65,6 +65,21 @@ hr {
   .container {
     padding-left: 30px;
   }
+
+  .close {
+    float:right;
+    display:inline-block;
+    padding: 2px 5px;
+    background-color: darkgreen;
+    color: white;
+    opacity: 1;
+    border-radius: 5px;
+  }
+  .close:hover {
+    background: darkred;
+
+  }
+  
 }
 
 .field_with_errors {

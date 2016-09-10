@@ -16,7 +16,8 @@
                 's menu
                 <span class="caret"></span></button>
               <ul class="dropdown-menu">
-                <li><%=	 link_to('Logout', destroy_user_session_path, :method => :delete) if user_signed_in? %></li>   destroy_user_session
+                <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) if user_signed_in? %></li>
+                destroy_user_session
               </ul>
             </div>
           </div>
@@ -46,10 +47,13 @@
     <% unless flash.notice.nil? %>
         <div class="notice">
           <div class="container">
-            <% flash.each do |name, msg| %>
-                <%= msg %>
-                <br/>
-            <% end %>
+            <div class="col-sm-8">
+              <% flash.each do |name, msg| %>
+                  <%= msg %>
+                  <br/>
+              <% end %>
+            </div>
+            <span class="close pull-right" onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>&times;</span>
           </div>
         </div>
     <% end %>
