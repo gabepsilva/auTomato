@@ -6,6 +6,9 @@ $(function () {
     $('div#j--hide').hide();
     $('a#add-log').click(function (event) {
         event.preventDefault();
-        $('div#j--hide').toggle();
+        //$('div#j--hide').toggle();
+        $('div#j--hide').animate({
+            height: 'toggle'
+        }, 'fast');
     });
 });
