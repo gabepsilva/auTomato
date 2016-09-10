@@ -16,3 +16,17 @@
   });
 
 }).call(this);
+
+
+
+
+$(function () {
+    $('div#j--hide').hide();
+    $('a#add-log').click(function (event) {
+        event.preventDefault();
+        $('div#j--hide').animate({
+            height: 'toggle'
+        }, 'fast');
+    });
+});
+
