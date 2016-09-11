@@ -6,6 +6,7 @@ class CreateSteps < ActiveRecord::Migration[5.0]
       t.string :status,  :default => 'TODO'
       t.integer :change_id
       t.integer :assignedTo
+      t.integer :logs_count, default: 0, null: false
 
       t.timestamps
     end

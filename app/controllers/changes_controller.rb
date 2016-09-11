@@ -13,7 +13,7 @@ class ChangesController < ApplicationController
   # GET /changes/1
   # GET /changes/1.json
   def show
-    @steps = @change.steps.reorder('stepNo ASC')
+    @steps = @change.steps.reorder('stepNo ASC').includes(:assignedTo)
     @step = Step.new
     @step.id = ( Step.last.id ) +1
     @colors = StepStatus.all
