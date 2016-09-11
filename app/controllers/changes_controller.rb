@@ -1,8 +1,8 @@
 class ChangesController < ApplicationController
- before_action :set_change, only: [:show, :edit, :update, :destroy]
- #before_action :process_owner, only: [:create]
+  before_action :set_change, only: [:show, :edit, :update, :destroy]
+  #before_action :process_owner, only: [:create]
 
- autocomplete :project, :name, :full => true
+  autocomplete :project, :name, :full => true
 
   # GET /changes
   # GET /changes.json
@@ -15,7 +15,7 @@ class ChangesController < ApplicationController
   def show
     @steps = @change.steps.reorder('stepNo ASC').includes(:assignedTo)
     @step = Step.new
-    @step.id = ( Step.last.id ) +1
+    @step.id = (Step.last.id) +1
     @colors = StepStatus.all
 
     @change.links_to_display = %i(more_info add_step_modal edit_change_to clone_change_to update_change_status)
@@ -32,9 +32,7 @@ class ChangesController < ApplicationController
   # GET /changes/1/edit
   def edit
 
-    puts '----------'
-    puts  @change.inspect
-
+    @change.links_to_display = %i(more_info add_step_modal edit_change_to clone_change_to update_change_status)
   end
 
   # POST /changes
@@ -85,37 +83,37 @@ class ChangesController < ApplicationController
     end
   end
 
-    def project_autocomplete
-      @projects = Project.order(:name).where("name LIKE ?", "%#{params[:term]}%")
-      respond_to do |format|
-        format.html
-        format.json {
-          render json: @projects.map(&:name).to_json
-        }
-      end
+  def project_autocomplete
+    @projects = Project.order(:name).where("name LIKE ?", "%#{params[:term]}%")
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @projects.map(&:name).to_json
+      }
     end
+  end
 
- def owner_autocomplete
-   @users = User.order(:name).where("name LIKE ?", "%#{params[:term]}%")
-   respond_to do |format|
-     format.html
-     format.json {
-       render json: @users.map(&:name).to_json
-     }
-   end
- end
+  def owner_autocomplete
+    @users = User.order(:name).where("name LIKE ?", "%#{params[:term]}%")
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @users.map(&:name).to_json
+      }
+    end
+  end
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_change
-      @change = Change.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_change
+    @change = Change.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def change_params
-      params.require(:change).permit(:name, :description, :implementation_date, :owner, :project )
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def change_params
+    params.require(:change).permit(:name, :description, :implementation_date, :owner, :project)
+  end
 
   def process_owner
     @change.owner = User.find_by_name(params[:change][:owner_attributes][:name]) #unless @change.owner.id == params[:change][:owner_attributes][:id].to_i
@@ -124,7 +122,6 @@ class ChangesController < ApplicationController
   def process_project
     @change.project = Project.find_by_name(params[:change][:project_attributes][:name]) #unless @change.owner.id == params[:change][:owner_attributes][:id].to_i
   end
-
 
 
 end

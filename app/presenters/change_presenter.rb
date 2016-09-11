@@ -66,5 +66,24 @@ class ChangePresenter < BasePresenter
 
   end
 
+  def print_breadcrumb
+
+    if change.name.to_s.empty?
+
+      self.breadcrumb_links << "<li class='active'> <p><span class='glyphicon glyphicon-th-large'></span>Create new change </p></li>".html_safe
+
+    else
+
+      path = Rails.application.routes.url_helpers.project_path(change.project)
+      self.breadcrumb_links << "<li>#{h.link_to "<p><span class='glyphicon glyphicon-folder-open'></span>#{change.project.name.truncate(@truncate_NO)}</p>".html_safe, path}</li>"
+
+      self.breadcrumb_links << "<li class='active'> <p><span class='glyphicon glyphicon-th-large'></span>#{change.name.truncate(@truncate_NO)}</p></li>".html_safe
+
+    end
+
+    super
+
+  end
+
 end
 

@@ -1,6 +1,6 @@
 <div class="container">
 
-  <br/><br/>
+  <br/>
   <% present @project do |project_presenter| %>
       <%= bootstrap_form_for(project) do |f| %>
 
@@ -9,10 +9,8 @@
 
           <%= f.text_area :description %>
 
+          <%= f.submit class: 'btn btn-success pull-right' %>
 
-          <div class="actions">
-            <%= f.submit %>
-          </div>
       <% end %>
   <% end %>
 </div>

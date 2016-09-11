@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "RobotoSlab-Regular";
+  src: url(/assets/RobotoSlab-Regular.ttf) format("truetype");
+
+}
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -15,10 +20,10 @@ pre {
 
 a {
   color: black;
+  color: #303f9f;
 
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: #303f9f;
   }
 }
 
@@ -38,6 +43,16 @@ div {
   }
 }
 
+label {
+  display: block;
+}
+
+hr {
+
+  margin: 5px 0;
+
+}
+
 .notice {
   background-color: #5cb85c;
   color: #fff;
@@ -50,6 +65,21 @@ div {
   .container {
     padding-left: 30px;
   }
+
+  .close {
+    float:right;
+    display:inline-block;
+    padding: 2px 5px;
+    background-color: darkgreen;
+    color: white;
+    opacity: 1;
+    border-radius: 5px;
+  }
+  .close:hover {
+    background: darkred;
+
+  }
+  
 }
 
 .field_with_errors {
@@ -72,10 +102,6 @@ div {
   }
 }
 
-label {
-  display: block;
-}
-
 .step_label {
 
   display: inline-block;
@@ -95,11 +121,71 @@ label {
 
 }
 
+.download-link {
+
+  display: inline-block;
+  margin-bottom: 10px;
+  color: green;
+
+}
+
 .show-action-header {
-  background-color: darkslateblue;
+  background-color: #3f51b5;
   color: white;
+  font-weight: 600;
   padding: 0px 0px 10px 0px;
-  #margin-top: -30px;
+
+  .btn-primary--power-menu {
+
+    background-color: transparent;
+    padding: 0;
+    border: 0;
+
+  }
+
+  .btn-primary--power-menu:hover {
+    text-decoration: underline;
+  }
+
+  .dropdown-toggle:active, .open .dropdown-toggle {
+    background: transparent !important;
+  }
+
+  .dropdown-menu > li > a:hover {
+    font-weight: bold;
+    background-color: #3f51b5;
+    color: white;
+  }
+
+}
+
+.breadcrumb--larger {
+
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: white;
+  background-color: #303f9f;
+
+  a {
+    color: white;
+  }
+
+  .active {
+    color: #c5cae9;
+  }
+
+  .glyphicon {
+    display: block;
+    text-align: center;
+  }
+  p {
+    text-align: center;
+    margin: 0 10px 0 10px;
+
+  }
+  li:before {
+    display: none;
+  }
+
 }
 
 .overlay {
@@ -119,8 +205,7 @@ ul.ui-autocomplete {
   z-index: 1100;
 }
 
-
-.footer-basic{
+.footer-basic {
 
   width: 100%;
   margin-top: 80px;
