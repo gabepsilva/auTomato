@@ -29,7 +29,7 @@
             <fieldset class="form-group">
               <hr/>
               <%= f.fields_for :assignedTo_attributes, @step.assignedTo do |c| %>
-                  <%= c.text_field :name, class: "search-query", type: "search", data: {autocomplete: changes_owner_autocomplete_path}, 'data-auto-focus' => true, label: 'Change owner (NAME)' %>
+                  <%= c.text_field :name, class: "search-query", type: "search", data: {autocomplete: changes_owner_autocomplete_path}, 'data-auto-focus' => true, label: 'Assigned to' %>
               <% end %>
               <hr/>
             </fieldset>
