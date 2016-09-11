@@ -26,11 +26,12 @@ class StepsController < ApplicationController
 
     FileUtils::mkdir_p (storage_folder + storage_hier)
 
-    if !params[:upload][:file].nil?
+    log = Log.new(step: @step)
 
-      log = Log.new(step: @step)
+    unless params[:upload][:file].nil?
 
       final_file_name = Log.last.id.to_s + '_' + params[:upload][:file].original_filename
+      log.file_name = final_file_name
       log.log_path = storage_folder + storage_hier
 
 
@@ -40,11 +41,11 @@ class StepsController < ApplicationController
       require 'rack/mime'
       log.mime_type = MIME::Types.type_for(final_file_name).first.content_type
       @step.logs << log
+
     end
 
     if !params[:upload][:text_field_log].empty?
 
-      log = Log.new(step: @step)
 
       file = Tempfile.new('text_field_log')
       file.write(params[:upload][:text_field_log])

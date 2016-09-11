@@ -43,7 +43,7 @@
             <div class="panel-body">
 
               <%= link_to("Downaload #{log.file_name}", steps_download_url(:log => log)) %>
-              <% if log.mime_type = 'text/plain' %>
+              <% if log.mime_type == 'text/plain' %>
                   <pre>
                     <%= render :file => log.log_path + log.file_name %>
                   </pre>
