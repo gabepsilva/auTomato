@@ -58,7 +58,7 @@
               <%= link_to('<i class="glyphicon glyphicon-download-alt"></i> Download this log'.html_safe, steps_download_url(:log => log), class: 'download-link')  %>
               <% if log.mime_type == 'text/plain' %>
                   <pre>
-                    <%= render :file => log.log_path + log.file_name %>
+<%= render :file => log.log_path + log.file_name %>
                   </pre>
               <% end %>
             </div>
