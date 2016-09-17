@@ -1,24 +1,15 @@
-# README
+# AuTomato
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Automato is a Change Tracking System.
 
-Things you may want to cover:
+It is built on Ruby on Rails framework v5
 
-* Ruby version
+#####Database
+- Still in development: Standart Sqlite3
 
-* System dependencies
+##### Database initialization
+- Run Migration 
+- Run seed 
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##### How to run the test suite
+-Not Implemented
